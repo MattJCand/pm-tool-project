@@ -1,0 +1,634 @@
+{
+  "common": {
+    "step": "Étape",
+    "continue": "Continuer →",
+    "seeResult": "Voir ma recommandation →",
+    "previous": "← Précédent",
+    "restart": "↻ Recommencer",
+    "backToTools": "← Tous les outils",
+    "recommendationLabel": "Recommandation",
+    "noRecommendationTitle": "Pas de recommandation claire",
+    "whyLabel": "Pourquoi cette recommandation",
+    "alsoLabel": "À combiner avec",
+    "nextStepsLabel": "Comment démarrer",
+    "resultAriaLabel": "Résultat",
+    "charHintReady": "C'est suffisant, continue →",
+    "charHintCount": "{count} / {min} caractères minimum",
+    "missingAnswers": "Réponses manquantes ou invalides.",
+    "langToggle": { "fr": "FR", "en": "EN" }
+  },
+  "diamondPhases": {
+    "discovery_problem": "Discovery Problème",
+    "discovery_solution": "Discovery Solution",
+    "initiative": "Initiative",
+    "backlog": "Backlog",
+    "quick_check": "Vérification rapide"
+  },
+  "ideaClassifier": {
+    "ideaStep": {
+      "question": "Décris ton idée en une ou deux phrases.",
+      "hint": "Pas besoin d'être précis, une intuition suffit pour commencer.",
+      "placeholder": "Ex: Permettre aux managers de voir en temps réel où en sont leurs techniciens sur le terrain...",
+      "privacyNote": "🔒 Ça reste entre toi et ce navigateur : rien n'est envoyé ni stocké sur un serveur. Ton texte est juste gardé en local (localStorage) pour que tu ne perdes pas ta progression, et rappelé dans ta recommandation à la fin."
+    },
+    "hypothesisRecapLabel": "Ton idée",
+    "steps": {
+      "business": {
+        "question": "Cette idée est-elle liée à un objectif business identifié ?",
+        "hint": "Teresa Torres : une opportunité sans lien avec un outcome business ne mérite pas d'entrer dans le process.",
+        "options": [
+          { "value": "clear", "icon": "🎯", "label": "Oui, le lien est clair", "hint": "Je sais quel objectif ça sert" },
+          { "value": "vague", "icon": "🌫️", "label": "Vaguement", "hint": "J'ai une intuition mais pas de lien explicite" },
+          { "value": "none", "icon": "❓", "label": "Pas encore", "hint": "Je ne sais pas quel objectif ça sert" }
+        ]
+      },
+      "signals": {
+        "question": "Tu as des signaux utilisateurs qui confirment un problème réel ?",
+        "hint": "Melissa Perri : le problème doit être validé avant d'explorer des solutions. Un signal = retour direct, donnée usage, interview, NPS...",
+        "options": [
+          { "value": "strong", "icon": "📣", "label": "Oui, plusieurs signaux clairs", "hint": "Des users ont exprimé ce problème explicitement" },
+          { "value": "weak", "icon": "📡", "label": "Quelques signaux faibles", "hint": "Des indices mais pas de confirmation directe" },
+          { "value": "none", "icon": "🔇", "label": "Aucun signal pour l'instant", "hint": "C'est une intuition interne" }
+        ]
+      },
+      "problem": {
+        "question": "Le problème est-il bien compris et documenté ?",
+        "hint": "Teresa Torres : avant de passer aux solutions, l'espace du problème doit être cartographié. Qui est impacté ? Dans quel contexte ? Avec quelle fréquence ?",
+        "options": [
+          { "value": "clear", "icon": "✅", "label": "Oui, on comprend bien le problème", "hint": "Contexte, impact, fréquence sont documentés" },
+          { "value": "partial", "icon": "🔍", "label": "Partiellement", "hint": "On a des éléments mais des zones floues restent" },
+          { "value": "unclear", "icon": "🌀", "label": "Non, c'est encore flou", "hint": "On ne sait pas encore bien ce qui se passe" }
+        ]
+      },
+      "solution": {
+        "question": "Tu as une solution claire en tête ? Et quel est l'effort estimé ?",
+        "hint": "Melissa Perri : quand le problème ET la solution sont clairs, on passe en mode exécution. Si c'est un quick win, pas besoin de discovery.",
+        "options": [
+          { "value": "clear_small", "icon": "⚡", "label": "Solution claire + petit effort", "hint": "Quick win, moins d'1 sprint" },
+          { "value": "clear_big", "icon": "🏗️", "label": "Solution claire + gros effort", "hint": "On sait quoi faire, c'est un chantier" },
+          { "value": "vague", "icon": "💭", "label": "Solution vague", "hint": "Une direction mais pas de solution précise" },
+          { "value": "none", "icon": "🔭", "label": "Aucune solution en tête", "hint": "On ne sait pas encore comment résoudre" }
+        ]
+      }
+    },
+    "results": {
+      "no_business_link": {
+        "recommendation": "Reformuler d'abord",
+        "tag": "⚠️ Hors process",
+        "tagClass": "tag-reformuler",
+        "rationale": "Cette idée n'est pas encore liée à un objectif business identifié. Sans cet ancrage, elle ne peut pas entrer dans le process produit : elle risque de générer du build sans valeur mesurable.",
+        "reference": "Inspiré de Teresa Torres (Continuous Discovery Habits) : une opportunité sans lien avec un outcome business n'a pas sa place dans l'Opportunity Solution Tree.",
+        "nextSteps": [
+          "Identifie l'objectif business de ton équipe pour ce trimestre",
+          "Reformule l'idée comme un problème utilisateur lié à cet objectif",
+          "Si le lien est introuvable, mets l'idée en parking lot",
+          "Reviens dessus lors du prochain cycle de planification"
+        ],
+        "diamond": []
+      },
+      "business_vague_no_signals": {
+        "recommendation": "Reformuler d'abord",
+        "tag": "⚠️ Lien business à clarifier",
+        "tagClass": "tag-reformuler",
+        "rationale": "Le lien avec un objectif business n'est qu'une intuition, et aucun signal utilisateur ne vient la renforcer. C'est la combinaison la plus risquée : ni la valeur business ni le besoin utilisateur ne sont établis. Clarifie l'un des deux avant d'investir du temps de discovery.",
+        "reference": "Inspiré de Melissa Perri (Escaping the Build Trap) : sans lien business explicite ni signal utilisateur, une idée reste une hypothèse non ancrée, pas un sujet à traiter.",
+        "nextSteps": [
+          "Reformule le lien business : à quel objectif d'équipe ça sert précisément ?",
+          "À défaut, cherche un premier signal utilisateur (interview rapide, ticket support, donnée d'usage)",
+          "Si ni l'un ni l'autre n'émerge, mets l'idée en parking lot",
+          "Reviens dessus quand un des deux points est éclairci"
+        ],
+        "diamond": []
+      },
+      "business_vague_advanced": {
+        "recommendation": "Reformuler d'abord",
+        "tag": "⚠️ Lien business à clarifier",
+        "tagClass": "tag-reformuler",
+        "rationale": "Le problème est déjà bien compris et tu es sur le point d'avancer vers une solution concrète (voire un quick win), mais le lien avec un objectif business reste une intuition, pas un lien explicite. Committer maintenant risque de livrer quelque chose qui ne sert aucun outcome mesurable, même si le problème lui-même est réel.",
+        "reference": "Inspiré de Teresa Torres (Continuous Discovery Habits) : l'outcome business est la racine de l'Opportunity Solution Tree. Un lien vague doit être rendu explicite avant d'avancer, pas seulement un lien totalement absent.",
+        "nextSteps": [
+          "Reformule en une phrase l'objectif business précis que cette idée sert",
+          "Vérifie ce lien avec un stakeholder ou ton manager avant de continuer",
+          "Si le lien se confirme, reprends la classification avec un lien business clair",
+          "Si le lien ne tient pas, remets l'idée en discovery ou en parking lot"
+        ],
+        "diamond": []
+      },
+      "double_discovery": {
+        "recommendation": "Double Discovery",
+        "tag": "🔷 Discovery Problème + Solution",
+        "tagClass": "tag-double",
+        "rationale": "Le problème n'est pas encore validé et la solution reste floue. Il faut d'abord explorer l'espace du problème avant de chercher des solutions : c'est le double diamant complet.",
+        "reference": "Inspiré de Melissa Perri : les équipes qui sautent à la solution sans valider le problème tombent dans le build trap. Inspiré de Teresa Torres : commence par cartographier les opportunités avant d'explorer les solutions.",
+        "nextSteps": [
+          "Phase 1 (Discovery problème) : mène 5 interviews exploratoires sur le problème",
+          "Cartographie les opportunités avec un Opportunity Solution Tree",
+          "Valide que le problème mérite d'être résolu (fréquence, impact, alternatives actuelles)",
+          "Phase 2 (Discovery solution) : génère et teste plusieurs pistes de solutions",
+          "Prototype et valide avant de passer en développement"
+        ],
+        "diamond": ["discovery_problem", "discovery_solution", "initiative"]
+      },
+      "discovery_solution_from_problem": {
+        "recommendation": "Discovery Solution",
+        "tag": "🔵 Discovery Solution uniquement",
+        "tagClass": "tag-solution",
+        "rationale": "Le problème est suffisamment compris pour avancer, mais la solution reste à explorer. Tu peux entrer directement dans la phase de discovery solution sans repasser par la discovery problème.",
+        "reference": "Inspiré de Teresa Torres : quand l'opportunité est bien définie, l'équipe peut passer directement à l'exploration des solutions dans l'OST.",
+        "nextSteps": [
+          "Formalise l'opportunité : problème, utilisateurs impactés, contexte",
+          "Génère plusieurs pistes de solutions (pas une seule)",
+          "Prototype la ou les solutions les plus prometteuses",
+          "Teste avec de vrais utilisateurs avant de développer"
+        ],
+        "diamond": ["discovery_solution", "initiative"]
+      },
+      "initiative": {
+        "recommendation": "Initiative",
+        "tag": "🟣 Initiative",
+        "tagClass": "tag-initiative",
+        "rationale": "Le problème est bien compris, confirmé par au moins un signal utilisateur, et la solution est claire. C'est le bon moment pour passer en mode exécution : définir le scope, aligner l'équipe, et planifier le développement.",
+        "reference": "Inspiré de Melissa Perri : une initiative naît quand on a suffisamment de clarté sur le problème ET une direction solution validée.",
+        "nextSteps": [
+          "Rédige un problem statement clair partagé avec l'équipe",
+          "Définis les critères de succès (metrics)",
+          "Découpe en étapes livrables (milestones)",
+          "Planifie les sprints et aligne les parties prenantes"
+        ],
+        "diamond": ["initiative", "backlog"]
+      },
+      "initiative_unvalidated": {
+        "recommendation": "Discovery Solution",
+        "tag": "🔵 Valider avant de lancer",
+        "tagClass": "tag-solution",
+        "rationale": "Le problème te paraît clair et tu envisages déjà une solution de grande ampleur, mais aucun signal utilisateur ne confirme ce problème pour l'instant. Un chantier de cette taille ne doit jamais démarrer sur une simple intuition interne : valide vite avant de committer l'équipe.",
+        "reference": "Inspiré de Teresa Torres : ne construis jamais une initiative sans preuve que l'opportunité est réelle, même si elle te paraît évidente.",
+        "nextSteps": [
+          "Mène 3 à 5 interviews rapides pour confirmer que le problème est vécu tel que tu l'imagines",
+          "Vérifie les données d'usage ou de support disponibles",
+          "Si le problème est confirmé, repasse par cette étape avec un signal renseigné pour lancer l'Initiative",
+          "Si le problème n'est pas confirmé, réexplore les solutions avant de t'engager"
+        ],
+        "diamond": ["discovery_solution", "initiative"]
+      },
+      "backlog": {
+        "recommendation": "Ticket Backlog",
+        "tag": "🟡 Direct en Backlog",
+        "tagClass": "tag-backlog",
+        "rationale": "La solution est claire, l'effort est minimal, et un signal utilisateur confirme que ça vaut le coup. Pas besoin de passer par une phase de discovery complète : c'est un quick win à planifier directement dans le backlog.",
+        "reference": "Inspiré de Melissa Perri : les quick wins avec une solution évidente, un faible risque et un signal de validation n'ont pas besoin de discovery. L'over-process tue la vélocité.",
+        "nextSteps": [
+          "Rédige le ticket avec contexte, critères d'acceptation et effort estimé",
+          "Priorise-le dans le backlog selon l'impact / effort",
+          "Assigne-le au prochain sprint disponible",
+          "Mesure l'impact après livraison"
+        ],
+        "diamond": ["backlog"]
+      },
+      "backlog_quick_check": {
+        "recommendation": "Ticket Backlog (vérification rapide)",
+        "tag": "🟡 Backlog après vérification",
+        "tagClass": "tag-backlog",
+        "rationale": "L'effort est minimal et la solution te semble évidente, mais aucun signal ne confirme encore que ce problème est vécu par tes utilisateurs. Même pour un quick win, engager du temps de développement sans le moindre signal reste un pari. Une vérification légère (pas une discovery complète) suffit avant de committer.",
+        "reference": "Inspiré de Melissa Perri : un quick win reste un pari tant qu'aucun signal, même faible, ne confirme le problème qu'il résout.",
+        "nextSteps": [
+          "Vérifie rapidement les données disponibles : tickets support, analytics, retours commerciaux",
+          "Si possible, confirme avec 1 ou 2 utilisateurs en quelques minutes",
+          "Si un signal apparaît, rédige le ticket et priorise-le dans le backlog",
+          "Si aucun signal n'apparaît, reconsidère la priorité de cette idée"
+        ],
+        "diamond": ["quick_check", "backlog"]
+      },
+      "discovery_solution_clear_problem": {
+        "recommendation": "Discovery Solution",
+        "tag": "🔵 Discovery Solution uniquement",
+        "tagClass": "tag-solution",
+        "rationale": "Le problème est bien documenté et validé par les utilisateurs. Il ne reste qu'à trouver la bonne solution : entre directement en discovery solution sans repasser par la case problème.",
+        "reference": "Inspiré de Teresa Torres : ne retourne pas en discovery problème si l'opportunité est déjà bien définie. Concentre-toi sur l'exploration des solutions.",
+        "nextSteps": [
+          "Liste les contraintes et critères de la solution idéale",
+          "Génère au minimum 3 pistes de solutions différentes",
+          "Prototype la plus prometteuse rapidement",
+          "Teste et itère avant de committer en développement"
+        ],
+        "diamond": ["discovery_solution", "initiative"]
+      },
+      "discovery_solution_weak_signals": {
+        "recommendation": "Discovery Solution",
+        "tag": "🔵 Discovery Solution (renforcer les signaux)",
+        "tagClass": "tag-solution",
+        "rationale": "Le problème te semble déjà clair, mais les signaux utilisateurs qui le confirment sont faibles ou absents, contrairement à un problème réellement validé. Explore les solutions, mais fais-le en parallèle d'une collecte de signaux plus solides : ne fige rien tant que le problème n'est pas confirmé de l'extérieur.",
+        "reference": "Inspiré de Teresa Torres : une opportunité qui paraît claire en interne doit toujours être recoupée avec des signaux utilisateurs externes avant qu'on investisse dans ses solutions.",
+        "nextSteps": [
+          "Génère 2 à 3 pistes de solutions sans t'y engager encore",
+          "En parallèle, mène quelques interviews ou vérifie les données pour confirmer le problème",
+          "Priorise la piste la plus prometteuse une fois le problème confirmé",
+          "Prototype et teste avant de développer"
+        ],
+        "diamond": ["discovery_solution", "initiative"]
+      }
+    }
+  },
+  "discoveryAdvisor": {
+    "steps": {
+      "goal": {
+        "question": "Quel est ton objectif principal en ce moment ?",
+        "hint": "Chaque artefact a une fonction précise. Choisir le mauvais outil pour le bon moment reste un mauvais choix.",
+        "options": [
+          { "value": "understand_problem", "icon": "🔍", "label": "Comprendre le problème", "hint": "Explorer les besoins, douleurs et contexte utilisateur" },
+          { "value": "explore_solutions", "icon": "💡", "label": "Explorer des solutions", "hint": "Générer et prioriser des pistes de solutions" },
+          { "value": "align_team", "icon": "🤝", "label": "Aligner l'équipe ou les stakeholders", "hint": "Créer une vision partagée du problème ou du produit" },
+          { "value": "plan_delivery", "icon": "🗺️", "label": "Planifier le delivery d'une solution connue", "hint": "Découper et séquencer ce qu'on va construire" }
+        ]
+      },
+      "clarity": {
+        "question": "Où en es-tu dans ta compréhension du problème ?",
+        "hint": "Teresa Torres : avant d'explorer des solutions, l'espace des opportunités doit être suffisamment cartographié.",
+        "options": [
+          { "value": "none", "icon": "🌫️", "label": "Je pars de zéro", "hint": "Pas encore de clarté sur le problème ni les utilisateurs" },
+          { "value": "partial", "icon": "🔭", "label": "J'ai des hypothèses", "hint": "Je crois comprendre le problème mais c'est à valider" },
+          { "value": "good", "icon": "✅", "label": "Le problème est bien compris", "hint": "Validé par des signaux utilisateurs clairs" },
+          { "value": "solution_known", "icon": "🎯", "label": "Problème ET solution sont clairs", "hint": "Je sais ce qu'on va construire, il faut planifier" }
+        ]
+      },
+      "audience": {
+        "question": "Pour qui travailles-tu cet artefact ?",
+        "hint": "Un artefact solo sert à structurer ta pensée. Un artefact collectif sert à aligner. Les deux ont des formats très différents.",
+        "options": [
+          { "value": "solo", "icon": "🧠", "label": "Pour moi seul", "hint": "Structurer ma réflexion" },
+          { "value": "team", "icon": "👥", "label": "Équipe produit", "hint": "Dev, design, PM" },
+          { "value": "stakeholders", "icon": "🏢", "label": "Stakeholders business", "hint": "Direction, métier, clients" },
+          { "value": "all", "icon": "🌐", "label": "Tout le monde", "hint": "Alignement global" }
+        ]
+      },
+      "horizon": {
+        "question": "Sur quel horizon travailles-tu ?",
+        "hint": "L'horizon détermine le niveau d'abstraction de l'artefact : du ticket au vision produit.",
+        "options": [
+          { "value": "feature", "icon": "⚡", "label": "Court terme · une feature ou un sprint", "hint": "Quelques semaines" },
+          { "value": "product", "icon": "📦", "label": "Moyen terme · un produit ou une version", "hint": "Quelques mois" },
+          { "value": "vision", "icon": "🔭", "label": "Long terme · vision ou stratégie", "hint": "6 mois à plusieurs années" }
+        ]
+      },
+      "depth": {
+        "question": "Combien de temps peux-tu consacrer à cette discovery ?",
+        "hint": "Le budget disponible change la nature de l'artefact : un format léger si tu dois avancer vite, un format complet si tu as la bande passante pour cartographier en profondeur.",
+        "options": [
+          { "value": "quick", "icon": "⏱️", "label": "Peu de temps", "hint": "Quelques heures à une journée, je dois avancer vite" },
+          { "value": "deep", "icon": "🗂️", "label": "Du temps devant moi", "hint": "Plusieurs jours, je peux cartographier en profondeur" }
+        ]
+      }
+    },
+    "overrides": {
+      "plan_delivery_contradiction": "Tu veux planifier un delivery, mais le problème n'est pour l'instant pas du tout compris : planifier maintenant reviendrait à séquencer du travail sur une base incertaine. Commence par cadrer le problème avec un HMW / Problem Statement, puis reviens planifier une fois la clarté acquise.",
+      "align_team_solo_contradiction": "Tu veux aligner l'équipe, mais tu as indiqué travailler seul·e : un artefact d'alignement suppose un public à convaincre, donc cette combinaison ne correspond à aucun besoin réel. Voici un artefact de clarification individuelle à la place ; reviens choisir une audience réelle (équipe, stakeholders, tout le monde) une fois que tu veux vraiment aligner quelqu'un."
+    },
+    "artefacts": {
+      "ost": {
+        "name": "Opportunity Solution Tree",
+        "author": "Teresa Torres, Continuous Discovery Habits",
+        "rationale": "L'OST est l'artefact central de la discovery. Il structure la relation entre ton outcome business, les opportunités utilisateurs, les solutions possibles et les expériences à mener. Il t'évite de sauter à la solution avant d'avoir cartographié l'espace du problème.",
+        "reference": "Inspiré de Teresa Torres : l'OST force à rester connecté à l'outcome business tout en explorant l'espace des opportunités de façon systématique. C'est une carte vivante, pas un livrable figé.",
+        "nextSteps": [
+          "Pose ton outcome business en haut de l'arbre",
+          "Liste toutes les opportunités (besoins, douleurs, désirs) sans juger",
+          "Regroupe et priorise les opportunités par impact",
+          "Pour chaque opportunité prioritaire, génère plusieurs solutions",
+          "Identifie les hypothèses à tester en premier"
+        ],
+        "also": [
+          "Story Mapping (si tu passes en delivery)",
+          "Assumption Mapping (pour tester tes hypothèses)",
+          "ProtoAdvisor (une fois une piste priorisée, choisis comment la valider avant de construire)"
+        ]
+      },
+      "story_map": {
+        "name": "Story Mapping",
+        "author": "Jeff Patton, User Story Mapping",
+        "rationale": "Le Story Map permet de visualiser le parcours utilisateur complet et de séquencer les features à développer. C'est l'outil idéal quand le problème est compris et qu'on doit planifier ce qu'on va construire, et dans quel ordre.",
+        "reference": "Inspiré de Jeff Patton : une story map replace chaque user story dans son contexte d'usage. Elle montre le grand tableau que les backlogs à plat font disparaître.",
+        "nextSteps": [
+          "Identifie les grandes activités utilisateur (axe horizontal)",
+          "Décompose chaque activité en tâches détaillées",
+          "Priorise verticalement : ce qui est essentiel vs ce qui peut attendre",
+          "Trace une ligne horizontale pour définir ton MVP",
+          "Aligne l'équipe sur la slice minimale à livrer en premier"
+        ],
+        "also": [
+          "OST (si des zones d'incertitude remontent)",
+          "Impact Mapping (pour valider les priorités business)",
+          "ProtoAdvisor (pour valider chaque slice avant de la construire pour de bon)"
+        ]
+      },
+      "impact_map": {
+        "name": "Impact Mapping",
+        "author": "Gojko Adzic, Impact Mapping",
+        "rationale": "L'Impact Map aligne les features sur les objectifs business en posant quatre questions : Pourquoi ? (objectif) Qui ? (acteurs) Comment ? (impacts) Quoi ? (livrables). C'est l'artefact parfait pour aligner stakeholders business et équipe produit sur les priorités.",
+        "reference": "Inspiré de Gojko Adzic : l'Impact Map évite de builder des features déconnectées des objectifs. Elle force la conversation sur l'impact attendu avant de parler de solution.",
+        "nextSteps": [
+          "Définis l'objectif business mesurable au centre",
+          "Identifie les acteurs qui peuvent t'aider à l'atteindre",
+          "Pour chaque acteur, décris l'impact comportemental attendu",
+          "Liste les livrables qui pourraient créer cet impact",
+          "Priorise les branches avec le plus fort levier sur l'objectif"
+        ],
+        "also": [
+          "OST (pour approfondir les opportunités une fois les livrables identifiés)",
+          "Story Mapping (pour planifier le delivery)",
+          "ProtoAdvisor (une fois une piste priorisée, choisis comment la valider avant de construire)"
+        ]
+      },
+      "hmw": {
+        "name": "How Might We + Problem Statement",
+        "author": "IDEO, Design Thinking",
+        "rationale": "Le HMW reformule un problème comme une invitation à l'exploration. C'est l'artefact de départ quand on part de zéro : il ouvre l'espace des possibles sans contraindre vers une solution. Un bon Problem Statement cadre ce qu'on cherche à résoudre sans dicter comment.",
+        "reference": "Inspiré d'IDEO : la qualité de ta solution dépend directement de la qualité de ta question. Un HMW bien formulé génère plus d'idées pertinentes qu'un brief technique.",
+        "nextSteps": [
+          "Collecte les observations brutes sur le problème (interviews, data)",
+          "Reformule chaque problème en 'Comment pourrions-nous... ?'",
+          "Génère plusieurs formulations du même problème (plus large, plus étroit)",
+          "Choisis la formulation qui ouvre sans contraindre",
+          "Utilise-le comme point de départ pour l'OST ou l'Impact Map"
+        ],
+        "also": [
+          "OST (étape suivante naturelle une fois le problème mieux cadré)",
+          "Assumption Mapping (pour tester tes hypothèses de problème)",
+          "ProtoAdvisor (une fois une piste priorisée, choisis comment la valider avant de construire)"
+        ]
+      },
+      "jtbd": {
+        "name": "Jobs To Be Done : Job Story",
+        "author": "Clayton Christensen (théorie du Job To Be Done), format Job Story d'Alan Klement",
+        "rationale": "Le JTBD identifie ce que l'utilisateur cherche vraiment à accomplir, indépendamment de la solution. Il révèle les motivations profondes là où les user stories restent en surface. C'est l'artefact idéal pour comprendre pourquoi les gens utilisent (ou n'utilisent pas) ton produit.",
+        "reference": "Inspiré de Clayton Christensen : les clients n'achètent pas des produits, ils les 'engagent' pour accomplir un job. Comprendre le job, c'est comprendre la vraie concurrence. Le format de rédaction utilisé ici ('Quand je... je veux... pour que...') est le Job Story d'Alan Klement, une reformulation légère de la théorie JTBD, à ne pas confondre avec la Job Map en 8 étapes (define/locate/prepare/confirm/execute/monitor/modify/conclude) de Tony Ulwick.",
+        "nextSteps": [
+          "Rédige le job principal au format Job Story : 'Quand je... je veux... pour que...'",
+          "Cartographie les jobs fonctionnels, émotionnels et sociaux",
+          "Identifie les frictions actuelles (pain points) dans l'accomplissement du job",
+          "Cherche les solutions de contournement existantes : elles révèlent les vrais besoins",
+          "Priorise les jobs sous-servis avec le plus fort potentiel"
+        ],
+        "also": [
+          "HMW (pour reformuler en opportunités)",
+          "OST (pour explorer les solutions une fois le job clarifié)",
+          "ProtoAdvisor (une fois une piste priorisée, choisis comment la valider avant de construire)"
+        ]
+      },
+      "assumption_map": {
+        "name": "Assumption Mapping",
+        "author": "David Bland & Alex Osterwalder, Testing Business Ideas",
+        "rationale": "L'Assumption Map identifie et priorise les hypothèses critiques de ton idée selon deux dimensions : importance pour le succès et niveau de certitude actuel. Il te dit quoi tester en premier, avant d'investir en développement.",
+        "reference": "Inspiré de David Bland & Alex Osterwalder : toute idée produit repose sur des hypothèses. Les équipes qui échouent sont celles qui buildent sans avoir identifié et testé leurs hypothèses les plus risquées.",
+        "nextSteps": [
+          "Liste toutes les hypothèses de ton idée (désirabilité, faisabilité, viabilité)",
+          "Place chaque hypothèse sur la matrice : importance × certitude",
+          "Identifie le quadrant 'important + incertain' : ce sont tes priorités de test",
+          "Définis une expérience pour tester chaque hypothèse critique",
+          "Commence par l'hypothèse la plus risquée, pas la plus facile"
+        ],
+        "also": [
+          "OST (pour intégrer les résultats une fois les hypothèses testées)",
+          "ProtoAdvisor (une fois une piste priorisée, choisis comment la valider avant de construire)"
+        ]
+      }
+    }
+  },
+  "protoAdvisor": {
+    "hypothesisStep": {
+      "question": "Quelle est ton hypothèse à valider ?",
+      "placeholder": "Ex: Les managers paieraient pour un dashboard de suivi en temps réel de leurs techniciens...",
+      "privacyNote": "🔒 Rien n'est envoyé sur un serveur : ton texte reste local à ce navigateur et sera rappelé dans ta recommandation."
+    },
+    "hypothesisRecapLabel": "Ton hypothèse",
+    "steps": {
+      "risk": {
+        "question": "Quel est le risque principal de cette hypothèse ?",
+        "options": [
+          { "value": "desirability", "icon": "💡", "label": "Désirabilité", "hint": "Les gens en veulent-ils vraiment ?" },
+          { "value": "feasibility", "icon": "⚙️", "label": "Faisabilité", "hint": "Peut-on le construire ?" },
+          { "value": "viability", "icon": "📊", "label": "Viabilité", "hint": "Est-ce rentable business ?" },
+          { "value": "usability", "icon": "🎯", "label": "Utilisabilité", "hint": "Sauront-ils s'en servir ?" }
+        ]
+      },
+      "need": {
+        "question": "De quoi as-tu besoin pour valider ?",
+        "optionsByRisk": {
+          "desirability": [
+            { "value": "behavior", "icon": "🖱️", "label": "Un signal comportemental réel", "hint": "Clic, inscription, usage..." },
+            { "value": "qualitative", "icon": "💬", "label": "Un retour qualitatif direct", "hint": "Avis, ressenti, récit d'usage..." },
+            { "value": "technical", "icon": "🎭", "label": "Une réaction sans construire le vrai système", "hint": "Simuler pour observer la réaction réelle" },
+            { "value": "intent", "icon": "👆", "label": "Un signal d'intention (pas encore d'achat)", "hint": "Clic sur une fonctionnalité qui n'existe pas encore" }
+          ],
+          "feasibility": [
+            { "value": "behavior", "icon": "🔧", "label": "Voir le système fonctionner réellement", "hint": "Même minimal, en conditions réelles" },
+            { "value": "qualitative", "icon": "🗣️", "label": "Un avis d'expert avant de coder", "hint": "Devs, architectes, experts du domaine" },
+            { "value": "technical", "icon": "🧪", "label": "Une preuve technique construite", "hint": "Un POC qui répond à la question" },
+            { "value": "intent", "icon": "🧮", "label": "Une estimation avant de t'engager", "hint": "Coût de build vs valeur attendue" }
+          ],
+          "viability": [
+            { "value": "behavior", "icon": "💳", "label": "Un engagement réel (même manuel)", "hint": "Paiement, réservation, contrat..." },
+            { "value": "qualitative", "icon": "🏢", "label": "Un avis côté décideur business", "hint": "Budget, ROI, process d'achat" },
+            { "value": "technical", "icon": "📈", "label": "Un modèle chiffré", "hint": "Revenus, coûts, seuil de rentabilité" },
+            { "value": "intent", "icon": "💰", "label": "Un signal de willingness to pay", "hint": "Prix affiché, CTA d'achat" }
+          ],
+          "usability": [
+            { "value": "behavior", "icon": "👀", "label": "Observer un vrai usage", "hint": "Tâches, clics, hésitations" },
+            { "value": "qualitative", "icon": "⏱️", "label": "Une première impression", "hint": "Compréhension immédiate ou confusion" },
+            { "value": "technical", "icon": "🖥️", "label": "Une interaction réelle testable", "hint": "Prototype cliquable ou no-code" },
+            { "value": "intent", "icon": "🗂️", "label": "Leur modèle mental", "hint": "Comment ils organisent l'information" }
+          ]
+        }
+      }
+    },
+    "framework": {
+      "author": "Marty Cagan, SVPG (cadre désirabilité / faisabilité / viabilité / utilisabilité)",
+      "reference": "Inspiré de Marty Cagan (Silicon Valley Product Group) : un prototype ne sert jamais qu'à valider une seule chose à la fois (désirabilité, faisabilité, viabilité ou utilisabilité). Ce sont les mêmes quatre risques que ceux évalués dans DiscoveryAdvisor et IdeaClassifier, vus ici sous l'angle de la validation plutôt que de l'exploration."
+    },
+    "matrix": {
+      "desirability": {
+        "behavior": {
+          "name": "Landing Page",
+          "tag": "Désirabilité · Comportement",
+          "rationale": "Tu veux savoir si les gens cliquent, s'inscrivent, agissent. Une landing page avec un CTA clair te donnera des données réelles en 24-48h sans construire quoi que ce soit.",
+          "nextSteps": [
+            "Rédige une promesse claire en une ligne",
+            "Crée la landing avec un CTA (bouton, formulaire)",
+            "Drive du trafic dessus (5-10 personnes de ta cible)",
+            "Mesure le taux de clic / signup"
+          ]
+        },
+        "qualitative": {
+          "name": "Script d'interview",
+          "tag": "Désirabilité · Qualitatif",
+          "rationale": "Avant de construire quoi que ce soit, parle à 5 personnes. Un bon script d'interview te révélera si le problème est réel et si ta solution résonne, sans écrire une ligne de code.",
+          "nextSteps": [
+            "Prépare 5-7 questions ouvertes sur le problème (pas la solution)",
+            "Recrute 5 personnes de ta cible exacte",
+            "Conduis les interviews en 30 min chacune",
+            "Cherche les patterns récurrents dans les réponses"
+          ]
+        },
+        "technical": {
+          "name": "Wizard of Oz",
+          "tag": "Désirabilité · Preuve tech",
+          "rationale": "Simule le système manuellement derrière une interface simple. L'utilisateur pense que c'est automatisé, toi tu fais tout à la main. Tu valides la désirabilité avant d'investir en dev.",
+          "nextSteps": [
+            "Construis une interface minimaliste (Figma, no-code)",
+            "Effectue les actions 'automatiques' manuellement en coulisses",
+            "Observe comment les utilisateurs interagissent",
+            "Décide si ça vaut la peine d'automatiser"
+          ]
+        },
+        "intent": {
+          "name": "Fake Door",
+          "tag": "Désirabilité · Intention",
+          "rationale": "Ajoute un bouton ou une option qui n'existe pas encore dans ton produit. Mesure combien de gens cliquent dessus. C'est le signal d'intent le plus honnête qui soit.",
+          "nextSteps": [
+            "Identifie où placer le 'fake door' dans ton produit actuel",
+            "Ajoute le bouton / lien avec un message 'Bientôt disponible'",
+            "Mesure le taux de clic sur 1-2 semaines",
+            "Analyse qui clique (segment, usage...)"
+          ]
+        }
+      },
+      "feasibility": {
+        "behavior": {
+          "name": "Spike technique",
+          "tag": "Faisabilité · Comportement",
+          "rationale": "Code un prototype jetable focalisé sur la partie la plus risquée techniquement. Pas besoin de UI, pas besoin d'être propre, juste prouver que ça marche.",
+          "nextSteps": [
+            "Identifie le risque technique le plus critique",
+            "Code le minimum pour tester ce point précis",
+            "Fixe un timebox strict (1-3 jours max)",
+            "Documente ce que tu as appris, pas ce que tu as construit"
+          ]
+        },
+        "qualitative": {
+          "name": "Discussion technique",
+          "tag": "Faisabilité · Qualitatif",
+          "rationale": "Avant de coder, parle aux ingénieurs ou experts du domaine. Une conversation de 30 minutes peut t'éviter des semaines de développement dans le mauvais sens.",
+          "nextSteps": [
+            "Prépare tes questions techniques précises",
+            "Implique 1-2 devs ou experts dès maintenant",
+            "Cartographie les dépendances et blockers potentiels",
+            "Décide d'un go / no-go avant de commencer"
+          ]
+        },
+        "technical": {
+          "name": "POC (Proof of Concept)",
+          "tag": "Faisabilité · Preuve tech",
+          "rationale": "Un POC ciblé sur le point le plus incertain techniquement. L'objectif n'est pas d'avoir quelque chose de beau, c'est de répondre à 'est-ce qu'on peut le faire ?'",
+          "nextSteps": [
+            "Définis la question technique exacte à répondre",
+            "Construis le POC le plus minimal possible",
+            "Teste en conditions proches du réel",
+            "Documente les limites et les risques restants"
+          ]
+        },
+        "intent": {
+          "name": "Chiffrage rapide",
+          "tag": "Faisabilité · Intention",
+          "rationale": "Estime le coût de construction avant de valider la demande. Parfois le vrai risque c'est que le coût de build dépasse ce que les clients paieraient.",
+          "nextSteps": [
+            "Fais une estimation rough du coût de dev (T-shirt sizing)",
+            "Compare avec le revenu potentiel réaliste",
+            "Identifie les hypothèses critiques dans ton calcul",
+            "Valide les hypothèses les plus incertaines en premier"
+          ]
+        }
+      },
+      "viability": {
+        "behavior": {
+          "name": "Concierge MVP",
+          "tag": "Viabilité · Comportement",
+          "rationale": "Livre le service manuellement, à la main, en te présentant ouvertement comme un service non automatisé (à la différence d'un Wizard of Oz, l'utilisateur sait que c'est manuel). Teste le modèle économique avant de construire l'infrastructure : si les gens paient pour un service manuel assumé, ils paieront pour la version automatisée.",
+          "nextSteps": [
+            "Définis ton pricing hypothesis",
+            "Livre l'offre à la main, à ce prix, en étant transparent sur le côté manuel",
+            "Trouve 3-5 clients potentiels et propose-leur",
+            "Mesure la willingness to pay réelle"
+          ]
+        },
+        "qualitative": {
+          "name": "Entretien économique",
+          "tag": "Viabilité · Qualitatif",
+          "rationale": "Parle aux décideurs, pas aux utilisateurs. Les questions business (budget, process d'achat, alternatives actuelles) révèlent si ton modèle tient la route.",
+          "nextSteps": [
+            "Identifie qui contrôle le budget chez ta cible",
+            "Prépare des questions sur les coûts actuels et le ROI attendu",
+            "Explore le processus de décision d'achat",
+            "Valide ton pricing et ton canal de distribution"
+          ]
+        },
+        "technical": {
+          "name": "Business case chiffré",
+          "tag": "Viabilité · Preuve tech",
+          "rationale": "Construis un modèle financier simple avec tes hypothèses les plus incertaines. L'objectif est d'identifier les leviers qui font ou cassent la viabilité.",
+          "nextSteps": [
+            "Modélise tes hypothèses de revenus et coûts",
+            "Identifie les 2-3 hypothèses les plus sensibles",
+            "Teste ces hypothèses en priorité",
+            "Définis ton seuil de viabilité minimum"
+          ]
+        },
+        "intent": {
+          "name": "Landing Page + Pricing",
+          "tag": "Viabilité · Intention",
+          "rationale": "Une landing page avec un vrai prix affiché et un bouton 'Acheter' ou 'Réserver' te donnera le signal le plus honnête sur la willingness to pay.",
+          "nextSteps": [
+            "Crée une landing avec ta proposition de valeur claire",
+            "Affiche ton prix réel (pas 'contactez-nous')",
+            "Ajoute un CTA d'achat ou de réservation",
+            "Mesure le taux de conversion sur ta cible"
+          ]
+        }
+      },
+      "usability": {
+        "behavior": {
+          "name": "Test utilisateur sur prototype Figma",
+          "tag": "Utilisabilité · Comportement",
+          "rationale": "Crée un prototype cliquable dans Figma et observe des utilisateurs réels naviguer dedans. Tu identifieras les points de friction avant d'écrire une ligne de code.",
+          "nextSteps": [
+            "Crée un prototype Figma des écrans principaux",
+            "Définis 2-3 tâches à faire accomplir",
+            "Observe 5 utilisateurs en silence (ne les aide pas)",
+            "Note où ils bloquent, hésitent, ou se trompent"
+          ]
+        },
+        "qualitative": {
+          "name": "Test de 5 secondes",
+          "tag": "Utilisabilité · Qualitatif",
+          "rationale": "Montre ton interface 5 secondes à quelqu'un. Demande-lui ce qu'il a retenu et ce qu'il ferait. Tu sauras immédiatement si ton UX est clair ou confus.",
+          "nextSteps": [
+            "Prépare une capture de ton interface principale",
+            "Montre-la 5 secondes à 5-10 personnes",
+            "Demande : 'C'est quoi ce produit ? Que feriez-vous ?'",
+            "Identifie les incompréhensions récurrentes"
+          ]
+        },
+        "technical": {
+          "name": "Prototype interactif no-code",
+          "tag": "Utilisabilité · Preuve tech",
+          "rationale": "Construis une version fonctionnelle légère avec des outils no-code. Ça te permettra de tester des interactions réelles sans coût de dev.",
+          "nextSteps": [
+            "Choisis ton outil no-code adapté (Bubble, Webflow, Glide...)",
+            "Construis les 2-3 flows critiques uniquement",
+            "Teste avec des utilisateurs réels de ta cible",
+            "Itère rapidement sur les points de friction"
+          ]
+        },
+        "intent": {
+          "name": "Test de tri de cartes",
+          "tag": "Utilisabilité · Intention",
+          "rationale": "Fais trier des cartes représentant tes features par des utilisateurs. Tu découvriras leur modèle mental, essentiel avant de décider de l'architecture de ton produit.",
+          "nextSteps": [
+            "Liste tes features / contenus sur des cartes",
+            "Demande à 5 utilisateurs de les regrouper comme ils le sentent",
+            "Compare leurs groupements avec ta logique actuelle",
+            "Restructure ton IA selon leurs modèles mentaux"
+          ]
+        }
+      }
+    }
+  }
+}

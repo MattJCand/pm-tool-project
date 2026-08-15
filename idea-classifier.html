@@ -37,10 +37,13 @@
 
   <script src="js/logic/idea-classifier.js"></script>
   <script src="js/core/state.js"></script>
+  <script src="js/core/i18n.js"></script>
   <script src="js/core/ui-components.js"></script>
   <script src="js/views/idea-classifier-view.js"></script>
   <script>
     (function () {
+      document.documentElement.lang = window.PMTool.core.i18n.getLang();
+      window.PMTool.core.i18n.mountLangToggle();
       var mount = document.getElementById('tool-mount');
       var railItems = document.querySelectorAll('#rail-steps li');
       function onStepChange(stepIndex) {

@@ -704,3 +704,26 @@ textarea::placeholder {
     scroll-behavior: auto !important;
   }
 }
+
+.lang-toggle-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 40;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.lang-toggle-btn:hover {
+  border-color: var(--tool-color, var(--accent));
+  color: var(--tool-color, var(--accent));
+}

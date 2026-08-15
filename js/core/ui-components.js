@@ -1,13 +1,13 @@
 (function (global) {
 
-function renderProgressDots(current, total) {
+function renderProgressDots(current, total, stepWord) {
   const wrap = document.createElement('div');
   wrap.className = 'progress-wrap';
 
   const meta = document.createElement('div');
   meta.className = 'progress-meta';
   const stepNum = Math.min(current + 1, total);
-  meta.innerHTML = `<span><span class="current">Étape ${stepNum}</span> / ${total}</span>`;
+  meta.innerHTML = `<span><span class="current">${stepWord} ${stepNum}</span> / ${total}</span>`;
   wrap.appendChild(meta);
 
   const track = document.createElement('div');
@@ -54,7 +54,7 @@ function renderOptionButton({ icon, label, hint, onClick }) {
   return button;
 }
 
-function renderTextStep({ placeholder, minLength = 10, onValidChange }) {
+function renderTextStep({ placeholder, minLength = 10, onValidChange, hintReady, hintCountTemplate }) {
   const wrap = document.createElement('div');
 
   const textarea = document.createElement('textarea');
@@ -67,7 +67,9 @@ function renderTextStep({ placeholder, minLength = 10, onValidChange }) {
   function updateHint(value) {
     const len = value.trim().length;
     const ready = len >= minLength;
-    hint.textContent = ready ? 'C\'est suffisant, continue →' : `${len} / ${minLength} caractères minimum`;
+    hint.textContent = ready
+      ? hintReady
+      : hintCountTemplate.replace('{count}', String(len)).replace('{min}', String(minLength));
     hint.classList.toggle('ready', ready);
     return ready;
   }
@@ -94,18 +96,17 @@ function renderTextStep({ placeholder, minLength = 10, onValidChange }) {
   return wrap;
 }
 
-function renderDiamond(diamond) {
-  if (!diamond || diamond.length === 0) {
+function renderDiamond(diamondKeys, phaseLabels) {
+  if (!diamondKeys || diamondKeys.length === 0) {
     return null;
   }
   const wrap = document.createElement('div');
   wrap.className = 'diamond-visual';
-  wrap.innerHTML = diamond
-    .map((phase) =>
-      phase === '→'
-        ? '<div class="diamond-arrow">→</div>'
-        : `<div class="diamond-phase">${phase}</div>`
-    )
+  wrap.innerHTML = diamondKeys
+    .map((key, i) => {
+      const phase = `<div class="diamond-phase">${phaseLabels[key]}</div>`;
+      return i > 0 ? `<div class="diamond-arrow">→</div>${phase}` : phase;
+    })
     .join('');
   return wrap;
 }
@@ -114,18 +115,18 @@ function emptyStateIcon() {
   return `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>`;
 }
 
-function renderResultScreen(result, { onRestart, onBack } = {}) {
+function renderResultScreen(content, common, phaseLabels, { onRestart, onBack } = {}) {
   const container = document.createElement('div');
   container.className = 'result-card fade-in';
   container.setAttribute('role', 'region');
-  container.setAttribute('aria-label', 'Résultat');
+  container.setAttribute('aria-label', common.resultAriaLabel);
 
   const eyebrow = document.createElement('div');
   eyebrow.className = 'result-eyebrow';
-  eyebrow.textContent = 'Recommandation';
+  eyebrow.textContent = common.recommendationLabel;
   container.appendChild(eyebrow);
 
-  if (!result.recommendation) {
+  if (!content) {
     const icon = document.createElement('div');
     icon.className = 'result-empty-icon';
     icon.innerHTML = emptyStateIcon();
@@ -133,33 +134,33 @@ function renderResultScreen(result, { onRestart, onBack } = {}) {
 
     const title = document.createElement('h2');
     title.className = 'result-title';
-    title.textContent = 'Pas de recommandation claire';
+    title.textContent = common.noRecommendationTitle;
     container.appendChild(title);
 
     const rationale = document.createElement('p');
     rationale.className = 'result-rationale';
-    rationale.textContent = result.rationale;
+    rationale.textContent = common.missingAnswers;
     container.appendChild(rationale);
   } else {
-    const diamond = renderDiamond(result.diamond);
+    const diamond = renderDiamond(content.diamond, phaseLabels);
     if (diamond) container.appendChild(diamond);
 
     const title = document.createElement('h2');
     title.className = 'result-title';
-    title.textContent = result.recommendation;
+    title.textContent = content.recommendation || content.name;
     container.appendChild(title);
 
-    if (result.author) {
+    if (content.author) {
       const author = document.createElement('div');
       author.className = 'result-author';
-      author.textContent = result.author;
+      author.textContent = content.author;
       container.appendChild(author);
     }
 
-    if (result.tag) {
+    if (content.tag) {
       const tag = document.createElement('div');
-      tag.className = 'result-tag' + (result.tagClass ? ' ' + result.tagClass : '');
-      tag.textContent = result.tag;
+      tag.className = 'result-tag' + (content.tagClass ? ' ' + content.tagClass : '');
+      tag.textContent = content.tag;
       container.appendChild(tag);
     }
 
@@ -168,39 +169,39 @@ function renderResultScreen(result, { onRestart, onBack } = {}) {
 
     const whyLabel = document.createElement('div');
     whyLabel.className = 'result-section-label';
-    whyLabel.textContent = 'Pourquoi cette recommandation';
+    whyLabel.textContent = common.whyLabel;
     whyBlock.appendChild(whyLabel);
 
     const rationale = document.createElement('p');
     rationale.className = 'result-rationale';
-    rationale.textContent = result.rationale;
+    rationale.textContent = content.rationale;
     whyBlock.appendChild(rationale);
 
-    if (result.reference) {
+    if (content.reference) {
       const reference = document.createElement('p');
       reference.className = 'result-reference';
-      reference.textContent = result.reference;
+      reference.textContent = content.reference;
       whyBlock.appendChild(reference);
     }
 
     container.appendChild(whyBlock);
 
-    if (result.also && result.also.length > 0) {
+    if (content.also && content.also.length > 0) {
       const also = document.createElement('div');
       also.className = 'result-also';
       also.innerHTML = `
-        <div class="result-also-label">À combiner avec</div>
-        ${result.also.map((item) => `<div class="also-item"><span>→</span><span>${item}</span></div>`).join('')}
+        <div class="result-also-label">${common.alsoLabel}</div>
+        ${content.also.map((item) => `<div class="also-item"><span>→</span><span>${item}</span></div>`).join('')}
       `;
       container.appendChild(also);
     }
 
-    if (result.nextSteps && result.nextSteps.length > 0) {
+    if (content.nextSteps && content.nextSteps.length > 0) {
       const steps = document.createElement('div');
       steps.className = 'result-steps';
       steps.innerHTML = `
-        <div class="result-steps-label">Comment démarrer</div>
-        ${result.nextSteps
+        <div class="result-steps-label">${common.nextStepsLabel}</div>
+        ${content.nextSteps
           .map(
             (step, i) => `
           <div class="step-item">
@@ -217,10 +218,10 @@ function renderResultScreen(result, { onRestart, onBack } = {}) {
   const footer = document.createElement('div');
   footer.className = 'result-footer';
   if (onRestart) {
-    footer.appendChild(renderButton('↻ Recommencer', onRestart, { variant: 'secondary' }));
+    footer.appendChild(renderButton(common.restart, onRestart, { variant: 'secondary' }));
   }
   if (onBack) {
-    footer.appendChild(renderButton('← Tous les outils', onBack, { variant: 'secondary' }));
+    footer.appendChild(renderButton(common.backToTools, onBack, { variant: 'secondary' }));
   }
   if (footer.childNodes.length > 0) {
     container.appendChild(footer);

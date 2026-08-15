@@ -2,97 +2,92 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { classifyIdea } = require('../js/logic/idea-classifier.js');
 
-test('réponses invalides ou manquantes renvoient une recommandation nulle explicite', () => {
+test('réponses invalides ou manquantes renvoient une clé nulle explicite', () => {
   const result = classifyIdea({});
-  assert.equal(result.recommendation, null);
-  assert.ok(result.rationale);
+  assert.equal(result.key, null);
 });
 
-test('pas de lien business -> reformuler d\'abord', () => {
+test('pas de lien business -> no_business_link', () => {
   const result = classifyIdea({ business: 'none', signals: 'strong', problem: 'clear', solution: 'clear_small' });
-  assert.equal(result.recommendation, "Reformuler d'abord");
+  assert.equal(result.key, 'no_business_link');
 });
 
-test('lien business vague + aucun signal -> reformuler d\'abord (le champ vague a un effet réel)', () => {
+test('lien business vague + aucun signal -> business_vague_no_signals', () => {
   const result = classifyIdea({ business: 'vague', signals: 'none', problem: 'clear', solution: 'clear_small' });
-  assert.equal(result.recommendation, "Reformuler d'abord");
-  assert.match(result.tag, /clarifier/i);
+  assert.equal(result.key, 'business_vague_no_signals');
 });
 
 test('lien business vague + signal présent mais problème encore partiel -> le process continue normalement (pas bloqué)', () => {
   const result = classifyIdea({ business: 'vague', signals: 'strong', problem: 'partial', solution: 'vague' });
-  assert.equal(result.recommendation, 'Discovery Solution');
+  assert.equal(result.key, 'discovery_solution_from_problem');
 });
 
-test('lien business vague + problème clair + solution quick win -> reformuler d\'abord (ne pas committer sur un lien flou)', () => {
+test('lien business vague + problème clair + solution quick win -> business_vague_advanced (ne pas committer sur un lien flou)', () => {
   const result = classifyIdea({ business: 'vague', signals: 'strong', problem: 'clear', solution: 'clear_small' });
-  assert.equal(result.recommendation, "Reformuler d'abord");
-  assert.match(result.tag, /clarifier/i);
+  assert.equal(result.key, 'business_vague_advanced');
 });
 
-test('lien business vague + problème clair + grosse initiative -> reformuler d\'abord (ne pas committer sur un lien flou)', () => {
+test('lien business vague + problème clair + grosse initiative -> business_vague_advanced (ne pas committer sur un lien flou)', () => {
   const result = classifyIdea({ business: 'vague', signals: 'strong', problem: 'clear', solution: 'clear_big' });
-  assert.equal(result.recommendation, "Reformuler d'abord");
+  assert.equal(result.key, 'business_vague_advanced');
 });
 
-test('aucun signal + problème flou -> double discovery', () => {
+test('aucun signal + problème flou -> double_discovery', () => {
   const result = classifyIdea({ business: 'clear', signals: 'none', problem: 'unclear', solution: 'none' });
-  assert.equal(result.recommendation, 'Double Discovery');
+  assert.equal(result.key, 'double_discovery');
 });
 
-test('aucun signal + problème partiel -> double discovery', () => {
+test('aucun signal + problème partiel -> double_discovery', () => {
   const result = classifyIdea({ business: 'clear', signals: 'none', problem: 'partial', solution: 'vague' });
-  assert.equal(result.recommendation, 'Double Discovery');
+  assert.equal(result.key, 'double_discovery');
 });
 
-test('signaux présents mais problème pas encore clair -> discovery solution', () => {
+test('signaux présents mais problème pas encore clair -> discovery_solution_from_problem', () => {
   const result = classifyIdea({ business: 'clear', signals: 'weak', problem: 'partial', solution: 'vague' });
-  assert.equal(result.recommendation, 'Discovery Solution');
+  assert.equal(result.key, 'discovery_solution_from_problem');
 });
 
-test('signaux forts mais problème encore flou -> discovery solution', () => {
+test('signaux forts mais problème encore flou -> discovery_solution_from_problem', () => {
   const result = classifyIdea({ business: 'clear', signals: 'strong', problem: 'unclear', solution: 'none' });
-  assert.equal(result.recommendation, 'Discovery Solution');
+  assert.equal(result.key, 'discovery_solution_from_problem');
 });
 
 test('problème clair + solution claire avec gros effort + signal -> initiative', () => {
   const result = classifyIdea({ business: 'clear', signals: 'strong', problem: 'clear', solution: 'clear_big' });
-  assert.equal(result.recommendation, 'Initiative');
+  assert.equal(result.key, 'initiative');
 });
 
-test('problème clair + solution claire avec gros effort mais AUCUN signal -> pas d\'initiative sans validation', () => {
+test('problème clair + solution claire avec gros effort mais AUCUN signal -> initiative_unvalidated', () => {
   const result = classifyIdea({ business: 'clear', signals: 'none', problem: 'clear', solution: 'clear_big' });
-  assert.equal(result.recommendation, 'Discovery Solution');
-  assert.notEqual(result.recommendation, 'Initiative');
+  assert.equal(result.key, 'initiative_unvalidated');
 });
 
-test('solution claire avec petit effort + signal -> ticket backlog', () => {
+test('solution claire avec petit effort + signal -> backlog', () => {
   const result = classifyIdea({ business: 'clear', signals: 'strong', problem: 'clear', solution: 'clear_small' });
-  assert.equal(result.recommendation, 'Ticket Backlog');
+  assert.equal(result.key, 'backlog');
 });
 
-test('solution claire avec petit effort mais AUCUN signal -> vérification rapide requise avant backlog', () => {
+test('solution claire avec petit effort mais AUCUN signal -> backlog_quick_check', () => {
   const result = classifyIdea({ business: 'clear', signals: 'none', problem: 'clear', solution: 'clear_small' });
-  assert.equal(result.recommendation, 'Ticket Backlog (vérification rapide)');
+  assert.equal(result.key, 'backlog_quick_check');
 });
 
-test('problème clair + signaux forts + solution vague -> discovery solution', () => {
+test('problème clair + signaux forts + solution vague -> discovery_solution_clear_problem', () => {
   const result = classifyIdea({ business: 'clear', signals: 'strong', problem: 'clear', solution: 'vague' });
-  assert.equal(result.recommendation, 'Discovery Solution');
+  assert.equal(result.key, 'discovery_solution_clear_problem');
 });
 
-test('problème clair + signaux forts + aucune solution -> discovery solution', () => {
+test('problème clair + signaux forts + aucune solution -> discovery_solution_clear_problem', () => {
   const result = classifyIdea({ business: 'clear', signals: 'strong', problem: 'clear', solution: 'none' });
-  assert.equal(result.recommendation, 'Discovery Solution');
+  assert.equal(result.key, 'discovery_solution_clear_problem');
 });
 
-test('problème clair déclaré mais signaux faibles + solution vague -> discovery solution avec rappel de valider le problème', () => {
+test('problème clair déclaré mais signaux faibles + solution vague -> discovery_solution_weak_signals', () => {
   const result = classifyIdea({ business: 'clear', signals: 'weak', problem: 'clear', solution: 'vague' });
-  assert.equal(result.recommendation, 'Discovery Solution');
-  assert.match(result.rationale, /clair/i);
+  assert.equal(result.key, 'discovery_solution_weak_signals');
 });
 
-test('problème clair déclaré mais aucun signal + aucune solution -> discovery solution avec rappel de valider le problème', () => {
+test('problème clair déclaré mais aucun signal + aucune solution -> discovery_solution_weak_signals', () => {
   const result = classifyIdea({ business: 'clear', signals: 'none', problem: 'clear', solution: 'none' });
-  assert.equal(result.recommendation, 'Discovery Solution');
+  assert.equal(result.key, 'discovery_solution_weak_signals');
 });
