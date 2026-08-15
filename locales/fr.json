@@ -17,6 +17,79 @@
     "missingAnswers": "Réponses manquantes ou invalides.",
     "langToggle": { "fr": "FR", "en": "EN" }
   },
+  "hub": {
+    "navFaq": "FAQ",
+    "headerNote": "Aucune donnée ne quitte votre navigateur",
+    "eyebrow": "3 outils, zéro friction",
+    "titleHtml": "De l'idée au <em>prototype</em>,<br />une décision à la fois.",
+    "intro": "Trois questionnaires courts, indépendants et partageables pour guider vos décisions produit, sans jargon inutile, avec la référence méthodologique derrière chaque recommandation.",
+    "tools": {
+      "idea": {
+        "kicker": "IdeaClassifier",
+        "time": "5 étapes · ~2 min",
+        "title": "Cette idée mérite-t-elle une discovery, ou va-t-elle direct en backlog ?",
+        "description": "Un filtre en 5 questions (lien business, signaux utilisateurs, clarté du problème et de la solution) pour éviter de sur-processer les quick wins ou de sous-explorer les paris risqués.",
+        "cta": "Classer une idée"
+      },
+      "discovery": {
+        "kicker": "DiscoveryAdvisor",
+        "time": "5 étapes · ~2 min",
+        "title": "Quel artefact discovery utiliser pour réduire votre incertitude ?",
+        "description": "OST, Story Map, JTBD, Impact Map, HMW ou Assumption Map : le bon format dépend de votre objectif, de votre audience et du temps disponible, pas d'une préférence personnelle.",
+        "cta": "Choisir un artefact"
+      },
+      "proto": {
+        "kicker": "ProtoAdvisor",
+        "time": "3 étapes · ~90 s",
+        "title": "Quel type de prototype construire pour valider votre hypothèse ?",
+        "description": "Désirabilité, faisabilité, viabilité ou utilisabilité : deux questions rapides pour savoir s'il faut une landing page, un POC, un Wizard of Oz ou un test de 5 secondes.",
+        "cta": "Choisir un prototype"
+      }
+    },
+    "pipelineHtml": "<b>Idée</b> → <b>Discovery</b> → <b>Prototype</b> : un pipeline logique, mais chaque outil se lance seul, avec sa propre page.",
+    "footer": "PM Tool Project · aucune donnée ne quitte votre navigateur."
+  },
+  "faq": {
+    "backLink": "← Tous les outils",
+    "eyebrow": "FAQ",
+    "titleHtml": "Questions <em>fréquentes</em>",
+    "intro": "Sur la confidentialité, la méthode, et l'utilité réelle de ces outils.",
+    "footer": "PM Tool Project · aucune donnée ne quitte votre navigateur.",
+    "items": [
+      {
+        "question": "Mes réponses sont-elles enregistrées quelque part ?",
+        "answerHtml": "<p>Non. Il n'y a aucun serveur, aucune base de données. Tes réponses restent dans ton navigateur (via <code>localStorage</code>), juste pour que tu ne perdes pas ta progression si tu fermes l'onglet. Rien n'est jamais envoyé ailleurs, et tu peux tout effacer à tout moment en vidant les données de ce site dans ton navigateur.</p>"
+      },
+      {
+        "question": "C'est gratuit ? Faut-il créer un compte ?",
+        "answerHtml": "<p>Gratuit, sans inscription, sans email. Tu ouvres une page, tu réponds, tu as ta recommandation.</p>"
+      },
+      {
+        "question": "Sur quoi se basent les recommandations ?",
+        "answerHtml": "<p>Sur des frameworks reconnus de product discovery : Teresa Torres (Opportunity Solution Tree), Melissa Perri (build trap), Jeff Patton (Story Mapping), Gojko Adzic (Impact Mapping), Marty Cagan (désirabilité/faisabilité/viabilité/utilisabilité), entre autres. Chaque recommandation explique le raisonnement et cite sa source, pour que tu puisses la challenger plutôt que la suivre aveuglément.</p>"
+      },
+      {
+        "question": "Ces outils remplacent-ils mon jugement de PM ?",
+        "answerHtml": "<p>Non, ils l'aident à s'expliciter. Un arbre de décision à 4-5 questions ne capture jamais toutes les variables d'une vraie décision produit (politique interne, deadline, dette technique...). Ce n'est vrai d'aucun framework, pas seulement de celui-ci. Ce que l'outil apporte, c'est de te forcer à répondre clairement à des questions qu'on saute souvent par habitude ou par excès de confiance : \"ai-je un vrai signal utilisateur, ou juste une intuition ?\".</p>"
+      },
+      {
+        "question": "Je suis déjà PM senior, ces frameworks je les connais : c'est utile pour moi ?",
+        "answerHtml": "<p>Probablement plus que tu ne le penses. Un pilote avec 20 ans d'expérience relit sa checklist avant chaque décollage, pas parce qu'il a oublié comment piloter, mais parce que l'expertise crée justement un biais de surconfiance que la checklist neutralise. Au-delà de ça, ces outils servent aussi à trancher un désaccord avec un stakeholder en s'appuyant sur un raisonnement externe plutôt qu'un avis personnel, à créer un langage commun en équipe, ou à documenter une décision a posteriori.</p>"
+      },
+      {
+        "question": "Les 3 outils sont-ils liés entre eux ?",
+        "answerHtml": "<p>Ils forment un pipeline logique (idée → discovery → prototype), mais chacun fonctionne seul. Tu peux arriver directement sur un seul outil sans passer par les autres.</p>"
+      },
+      {
+        "question": "Le projet est-il open source ? Je peux contribuer ?",
+        "answerHtml": "<p>Oui, sous licence MIT. Le code, les tests et les arbres de décision sont librement consultables sur GitHub. Les issues et pull requests sont bienvenues.</p><p><a href=\"https://github.com/MattJCand/pm-tool-project\" target=\"_blank\" rel=\"noopener\">github.com/MattJCand/pm-tool-project →</a></p>"
+      },
+      {
+        "question": "J'ai trouvé un bug ou une recommandation qui ne tient pas debout, je fais quoi ?",
+        "answerHtml": "<p>Ouvre une issue sur GitHub avec les réponses exactes que tu as données. Chaque branche de la logique de décision est testée, donc un vrai bug se corrige (et se re-teste) rapidement.</p>"
+      }
+    ]
+  },
   "diamondPhases": {
     "discovery_problem": "Discovery Problème",
     "discovery_solution": "Discovery Solution",

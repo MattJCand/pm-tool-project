@@ -13,76 +13,50 @@
 <body>
   <header class="hub-header">
     <a href="index.html" class="hub-logo"><span class="mark">pm</span>Tool<em>Kit</em></a>
-    <a href="index.html" class="back-link">← Tous les outils</a>
+    <a href="index.html" class="back-link" id="faq-back-link"></a>
   </header>
 
   <section class="hub-hero faq-hero">
-    <span class="hub-eyebrow"><span class="dot"></span>FAQ</span>
-    <h1 class="hub-title">Questions <em>fréquentes</em></h1>
-    <p class="hub-intro">Sur la confidentialité, la méthode, et l'utilité réelle de ces outils.</p>
+    <span class="hub-eyebrow"><span class="dot"></span><span id="faq-eyebrow"></span></span>
+    <h1 class="hub-title" id="faq-title"></h1>
+    <p class="hub-intro" id="faq-intro"></p>
   </section>
 
-  <main class="faq-list">
-    <details class="faq-item" open>
-      <summary>Mes réponses sont-elles enregistrées quelque part ?</summary>
-      <div class="faq-answer">
-        <p>Non. Il n'y a aucun serveur, aucune base de données. Tes réponses restent dans ton navigateur (via <code>localStorage</code>), juste pour que tu ne perdes pas ta progression si tu fermes l'onglet. Rien n'est jamais envoyé ailleurs, et tu peux tout effacer à tout moment en vidant les données de ce site dans ton navigateur.</p>
-      </div>
-    </details>
+  <main class="faq-list" id="faq-list"></main>
 
-    <details class="faq-item">
-      <summary>C'est gratuit ? Faut-il créer un compte ?</summary>
-      <div class="faq-answer">
-        <p>Gratuit, sans inscription, sans email. Tu ouvres une page, tu réponds, tu as ta recommandation.</p>
-      </div>
-    </details>
+  <footer class="hub-footer" id="faq-footer"></footer>
 
-    <details class="faq-item">
-      <summary>Sur quoi se basent les recommandations ?</summary>
-      <div class="faq-answer">
-        <p>Sur des frameworks reconnus de product discovery : Teresa Torres (Opportunity Solution Tree), Melissa Perri (build trap), Jeff Patton (Story Mapping), Gojko Adzic (Impact Mapping), Marty Cagan (désirabilité/faisabilité/viabilité/utilisabilité), entre autres. Chaque recommandation explique le raisonnement et cite sa source, pour que tu puisses la challenger plutôt que la suivre aveuglément.</p>
-      </div>
-    </details>
+  <script src="js/core/i18n.js"></script>
+  <script>
+    (function () {
+      var i18n = window.PMTool.core.i18n;
+      document.documentElement.lang = i18n.getLang();
+      i18n.mountLangToggle();
+      i18n.loadLocale(i18n.getLang()).then(function (dict) {
+        var t = dict.faq;
+        document.getElementById('faq-back-link').textContent = t.backLink;
+        document.getElementById('faq-eyebrow').textContent = t.eyebrow;
+        document.getElementById('faq-title').innerHTML = t.titleHtml;
+        document.getElementById('faq-intro').textContent = t.intro;
+        document.getElementById('faq-footer').textContent = t.footer;
 
-    <details class="faq-item">
-      <summary>Ces outils remplacent-ils mon jugement de PM ?</summary>
-      <div class="faq-answer">
-        <p>Non, ils l'aident à s'expliciter. Un arbre de décision à 4-5 questions ne capture jamais toutes les variables d'une vraie décision produit (politique interne, deadline, dette technique...). Ce n'est vrai d'aucun framework, pas seulement de celui-ci. Ce que l'outil apporte, c'est de te forcer à répondre clairement à des questions qu'on saute souvent par habitude ou par excès de confiance : "ai-je un vrai signal utilisateur, ou juste une intuition ?".</p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary>Je suis déjà PM senior, ces frameworks je les connais : c'est utile pour moi ?</summary>
-      <div class="faq-answer">
-        <p>Probablement plus que tu ne le penses. Un pilote avec 20 ans d'expérience relit sa checklist avant chaque décollage, pas parce qu'il a oublié comment piloter, mais parce que l'expertise crée justement un biais de surconfiance que la checklist neutralise. Au-delà de ça, ces outils servent aussi à trancher un désaccord avec un stakeholder en s'appuyant sur un raisonnement externe plutôt qu'un avis personnel, à créer un langage commun en équipe, ou à documenter une décision a posteriori.</p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary>Les 3 outils sont-ils liés entre eux ?</summary>
-      <div class="faq-answer">
-        <p>Ils forment un pipeline logique (idée → discovery → prototype), mais chacun fonctionne seul. Tu peux arriver directement sur un seul outil sans passer par les autres.</p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary>Le projet est-il open source ? Je peux contribuer ?</summary>
-      <div class="faq-answer">
-        <p>Oui, sous licence MIT. Le code, les tests et les arbres de décision sont librement consultables sur GitHub. Les issues et pull requests sont bienvenues.</p>
-        <p><a href="https://github.com/MattJCand/pm-tool-project" target="_blank" rel="noopener">github.com/MattJCand/pm-tool-project →</a></p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary>J'ai trouvé un bug ou une recommandation qui ne tient pas debout, je fais quoi ?</summary>
-      <div class="faq-answer">
-        <p>Ouvre une issue sur GitHub avec les réponses exactes que tu as données. Chaque branche de la logique de décision est testée, donc un vrai bug se corrige (et se re-teste) rapidement.</p>
-      </div>
-    </details>
-  </main>
-
-  <footer class="hub-footer">
-    PM Tool Project · aucune donnée ne quitte votre navigateur.
-  </footer>
+        var list = document.getElementById('faq-list');
+        list.innerHTML = '';
+        t.items.forEach(function (item, i) {
+          var details = document.createElement('details');
+          details.className = 'faq-item';
+          if (i === 0) details.open = true;
+          var summary = document.createElement('summary');
+          summary.textContent = item.question;
+          details.appendChild(summary);
+          var answer = document.createElement('div');
+          answer.className = 'faq-answer';
+          answer.innerHTML = item.answerHtml;
+          details.appendChild(answer);
+          list.appendChild(details);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
