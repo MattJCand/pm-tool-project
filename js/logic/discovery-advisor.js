@@ -162,6 +162,11 @@ function recommendDiscoveryArtifact(answers = {}) {
       "Tu veux planifier un delivery, mais le problème n'est pour l'instant pas du tout compris : planifier maintenant reviendrait à séquencer du travail sur une base incertaine. Commence par cadrer le problème avec un HMW / Problem Statement, puis reviens planifier une fois la clarté acquise.";
   } else if (goal === 'plan_delivery' || clarity === 'solution_known') {
     key = 'story_map';
+  } else if (goal === 'align_team' && audience === 'solo') {
+    // Contradiction assumée : un artefact d'alignement suppose un public à convaincre.
+    key = 'jtbd';
+    overrideNote =
+      "Tu veux aligner l'équipe, mais tu as indiqué travailler seul·e : un artefact d'alignement suppose un public à convaincre, donc cette combinaison ne correspond à aucun besoin réel. Voici un artefact de clarification individuelle à la place ; reviens choisir une audience réelle (équipe, stakeholders, tout le monde) une fois que tu veux vraiment aligner quelqu'un.";
   } else if (goal === 'align_team' && (audience === 'stakeholders' || audience === 'all')) {
     key = 'impact_map';
   } else if (clarity === 'none') {
@@ -174,8 +179,12 @@ function recommendDiscoveryArtifact(answers = {}) {
     key = depth === 'deep' ? 'ost' : 'assumption_map';
   } else if (goal === 'align_team' && audience === 'team') {
     key = 'ost';
-  } else if (horizon === 'vision') {
+  } else if (horizon === 'vision' && audience !== 'solo') {
     key = 'impact_map';
+  } else if (horizon === 'vision' && audience === 'solo') {
+    // L'Impact Map est structurellement un artefact collectif (Adzic) : une vision travaillée
+    // seul·e a besoin d'un artefact de clarification individuelle, pas d'alignement d'équipe.
+    key = 'jtbd';
   } else if (horizon === 'product' && clarity === 'good') {
     key = 'ost';
   } else {

@@ -74,9 +74,14 @@ test('aligner l\'équipe produit -> Opportunity Solution Tree', () => {
   assert.equal(result.recommendation, 'Opportunity Solution Tree');
 });
 
-test('horizon vision -> Impact Mapping', () => {
-  const result = recommendDiscoveryArtifact({ goal: 'understand_problem', clarity: 'good', audience: 'solo', horizon: 'vision', depth: 'quick' });
+test('horizon vision + audience non-solo -> Impact Mapping (artefact collectif)', () => {
+  const result = recommendDiscoveryArtifact({ goal: 'understand_problem', clarity: 'good', audience: 'team', horizon: 'vision', depth: 'quick' });
   assert.equal(result.recommendation, 'Impact Mapping');
+});
+
+test('horizon vision + audience solo -> Job Story, pas Impact Mapping (artefact collectif inadapté au solo)', () => {
+  const result = recommendDiscoveryArtifact({ goal: 'understand_problem', clarity: 'good', audience: 'solo', horizon: 'vision', depth: 'quick' });
+  assert.equal(result.recommendation, 'Jobs To Be Done : Job Story');
 });
 
 test('horizon produit + problème bien compris -> Opportunity Solution Tree', () => {
@@ -84,8 +89,14 @@ test('horizon produit + problème bien compris -> Opportunity Solution Tree', ()
   assert.equal(result.recommendation, 'Opportunity Solution Tree');
 });
 
-test('cas non prévu explicitement -> fallback Opportunity Solution Tree', () => {
+test('aligner l\'équipe mais travailler seul -> contradiction détectée, Job Story recommandé', () => {
   const result = recommendDiscoveryArtifact({ goal: 'align_team', clarity: 'partial', audience: 'solo', horizon: 'feature', depth: 'quick' });
+  assert.equal(result.recommendation, 'Jobs To Be Done : Job Story');
+  assert.match(result.rationale, /contradiction|seul/i);
+});
+
+test('cas non prévu explicitement -> fallback Opportunity Solution Tree', () => {
+  const result = recommendDiscoveryArtifact({ goal: 'understand_problem', clarity: 'good', audience: 'stakeholders', horizon: 'feature', depth: 'quick' });
   assert.equal(result.recommendation, 'Opportunity Solution Tree');
 });
 
