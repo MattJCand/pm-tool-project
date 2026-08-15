@@ -20,6 +20,7 @@ body {
   justify-content: space-between;
   gap: 1rem;
   padding: 1.4rem clamp(1.25rem, 5vw, 3rem);
+  padding-right: calc(clamp(1.25rem, 5vw, 3rem) + 64px);
 }
 
 .hub-logo {
@@ -76,7 +77,13 @@ body {
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   color: var(--text-faint);
-  margin-right: 56px;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .hub-header-note {
+    display: none;
+  }
 }
 
 /* -------------------------------------------------------------------- */
