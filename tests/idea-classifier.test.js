@@ -19,9 +19,20 @@ test('lien business vague + aucun signal -> reformuler d\'abord (le champ vague 
   assert.match(result.tag, /clarifier/i);
 });
 
-test('lien business vague + signal présent -> le process continue normalement (pas bloqué)', () => {
+test('lien business vague + signal présent mais problème encore partiel -> le process continue normalement (pas bloqué)', () => {
+  const result = classifyIdea({ business: 'vague', signals: 'strong', problem: 'partial', solution: 'vague' });
+  assert.equal(result.recommendation, 'Discovery Solution');
+});
+
+test('lien business vague + problème clair + solution quick win -> reformuler d\'abord (ne pas committer sur un lien flou)', () => {
   const result = classifyIdea({ business: 'vague', signals: 'strong', problem: 'clear', solution: 'clear_small' });
-  assert.equal(result.recommendation, 'Ticket Backlog');
+  assert.equal(result.recommendation, "Reformuler d'abord");
+  assert.match(result.tag, /clarifier/i);
+});
+
+test('lien business vague + problème clair + grosse initiative -> reformuler d\'abord (ne pas committer sur un lien flou)', () => {
+  const result = classifyIdea({ business: 'vague', signals: 'strong', problem: 'clear', solution: 'clear_big' });
+  assert.equal(result.recommendation, "Reformuler d'abord");
 });
 
 test('aucun signal + problème flou -> double discovery', () => {

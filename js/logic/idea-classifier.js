@@ -66,6 +66,25 @@ function classifyIdea(answers = {}) {
     };
   }
 
+  if (business === 'vague' && problem === 'clear') {
+    return {
+      recommendation: "Reformuler d'abord",
+      tag: '⚠️ Lien business à clarifier',
+      tagClass: 'tag-reformuler',
+      rationale:
+        "Le problème est déjà bien compris et tu es sur le point d'avancer vers une solution concrète (voire un quick win), mais le lien avec un objectif business reste une intuition, pas un lien explicite. Committer maintenant risque de livrer quelque chose qui ne sert aucun outcome mesurable, même si le problème lui-même est réel.",
+      reference:
+        "Inspiré de Teresa Torres (Continuous Discovery Habits) : l'outcome business est la racine de l'Opportunity Solution Tree. Un lien vague doit être rendu explicite avant d'avancer, pas seulement un lien totalement absent.",
+      nextSteps: [
+        "Reformule en une phrase l'objectif business précis que cette idée sert",
+        'Vérifie ce lien avec un stakeholder ou ton manager avant de continuer',
+        'Si le lien se confirme, reprends la classification avec un lien business clair',
+        'Si le lien ne tient pas, remets l\'idée en discovery ou en parking lot',
+      ],
+      diamond: [],
+    };
+  }
+
   if (signals === 'none' && (problem === 'unclear' || problem === 'partial')) {
     return {
       recommendation: 'Double Discovery',
