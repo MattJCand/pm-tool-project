@@ -1,6 +1,11 @@
 {
   "name": "pm-tool-project",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MattJCand/pm-tool-project"
+  },
   "scripts": {
     "test": "node --test"
   }
