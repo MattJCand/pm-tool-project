@@ -109,7 +109,7 @@
       card.innerHTML = `
         <div class="step-label">Étape 1 / ${TOTAL_STEPS}</div>
         <div class="question">Décris ton idée en une ou deux phrases.</div>
-        <div class="question-hint">Pas besoin d'être précis — une intuition suffit pour commencer.</div>
+        <div class="question-hint">Pas besoin d'être précis, une intuition suffit pour commencer.</div>
         <div class="privacy-note">🔒 Ça reste entre toi et ce navigateur : rien n'est envoyé ni stocké sur un serveur. Ton texte est juste gardé en local (localStorage) pour que tu ne perdes pas ta progression, et rappelé dans ta recommandation à la fin.</div>
       `;
       const nextBtn = renderButton('Continuer →', () => {

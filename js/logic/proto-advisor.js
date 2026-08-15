@@ -25,7 +25,7 @@ const MATRIX = {
       proto: "Script d'interview",
       tag: 'Désirabilité · Qualitatif',
       rationale:
-        "Avant de construire quoi que ce soit, parle à 5 personnes. Un bon script d'interview te révélera si le problème est réel et si ta solution résonne — sans écrire une ligne de code.",
+        "Avant de construire quoi que ce soit, parle à 5 personnes. Un bon script d'interview te révélera si le problème est réel et si ta solution résonne, sans écrire une ligne de code.",
       nextSteps: [
         'Prépare 5-7 questions ouvertes sur le problème (pas la solution)',
         'Recrute 5 personnes de ta cible exacte',
@@ -63,7 +63,7 @@ const MATRIX = {
       proto: 'Spike technique',
       tag: 'Faisabilité · Comportement',
       rationale:
-        'Code un prototype jetable focalisé sur la partie la plus risquée techniquement. Pas besoin de UI, pas besoin d\'être propre — juste prouver que ça marche.',
+        'Code un prototype jetable focalisé sur la partie la plus risquée techniquement. Pas besoin de UI, pas besoin d\'être propre, juste prouver que ça marche.',
       nextSteps: [
         'Identifie le risque technique le plus critique',
         'Code le minimum pour tester ce point précis',
@@ -87,7 +87,7 @@ const MATRIX = {
       proto: 'POC (Proof of Concept)',
       tag: 'Faisabilité · Preuve tech',
       rationale:
-        'Un POC ciblé sur le point le plus incertain techniquement. L\'objectif n\'est pas d\'avoir quelque chose de beau — c\'est de répondre à \'est-ce qu\'on peut le faire ?\'',
+        'Un POC ciblé sur le point le plus incertain techniquement. L\'objectif n\'est pas d\'avoir quelque chose de beau, c\'est de répondre à \'est-ce qu\'on peut le faire ?\'',
       nextSteps: [
         'Définis la question technique exacte à répondre',
         'Construis le POC le plus minimal possible',
@@ -125,7 +125,7 @@ const MATRIX = {
       proto: 'Entretien économique',
       tag: 'Viabilité · Qualitatif',
       rationale:
-        'Parle aux décideurs — pas aux utilisateurs. Les questions business (budget, process d\'achat, alternatives actuelles) révèlent si ton modèle tient la route.',
+        'Parle aux décideurs, pas aux utilisateurs. Les questions business (budget, process d\'achat, alternatives actuelles) révèlent si ton modèle tient la route.',
       nextSteps: [
         'Identifie qui contrôle le budget chez ta cible',
         'Prépare des questions sur les coûts actuels et le ROI attendu',
@@ -199,7 +199,7 @@ const MATRIX = {
       proto: 'Test de tri de cartes',
       tag: 'Utilisabilité · Intention',
       rationale:
-        'Fais trier des cartes représentant tes features par des utilisateurs. Tu découvriras leur modèle mental — essentiel avant de décider de l\'architecture de ton produit.',
+        'Fais trier des cartes représentant tes features par des utilisateurs. Tu découvriras leur modèle mental, essentiel avant de décider de l\'architecture de ton produit.',
       nextSteps: [
         'Liste tes features / contenus sur des cartes',
         'Demande à 5 utilisateurs de les regrouper comme ils le sentent',
@@ -213,9 +213,9 @@ const MATRIX = {
 const VALID_RISK = Object.keys(MATRIX);
 const VALID_NEED = ['behavior', 'qualitative', 'technical', 'intent'];
 
-const FRAMEWORK_AUTHOR = 'Marty Cagan — SVPG (cadre désirabilité / faisabilité / viabilité / utilisabilité)';
+const FRAMEWORK_AUTHOR = 'Marty Cagan, SVPG (cadre désirabilité / faisabilité / viabilité / utilisabilité)';
 const FRAMEWORK_REFERENCE =
-  "Inspiré de Marty Cagan (Silicon Valley Product Group) : un prototype ne sert jamais qu'à valider une seule chose à la fois — désirabilité, faisabilité, viabilité ou utilisabilité. Ce sont les mêmes quatre risques que ceux évalués dans DiscoveryAdvisor et IdeaClassifier, vus ici sous l'angle de la validation plutôt que de l'exploration.";
+  "Inspiré de Marty Cagan (Silicon Valley Product Group) : un prototype ne sert jamais qu'à valider une seule chose à la fois (désirabilité, faisabilité, viabilité ou utilisabilité). Ce sont les mêmes quatre risques que ceux évalués dans DiscoveryAdvisor et IdeaClassifier, vus ici sous l'angle de la validation plutôt que de l'exploration.";
 
 function recommendPrototype(answers = {}) {
   const { risk, need } = answers;

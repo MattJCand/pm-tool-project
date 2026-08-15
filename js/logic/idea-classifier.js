@@ -34,7 +34,7 @@ function classifyIdea(answers = {}) {
       tag: '⚠️ Hors process',
       tagClass: 'tag-reformuler',
       rationale:
-        "Cette idée n'est pas encore liée à un objectif business identifié. Sans cet ancrage, elle ne peut pas entrer dans le process produit — elle risque de générer du build sans valeur mesurable.",
+        "Cette idée n'est pas encore liée à un objectif business identifié. Sans cet ancrage, elle ne peut pas entrer dans le process produit : elle risque de générer du build sans valeur mesurable.",
       reference:
         "Inspiré de Teresa Torres (Continuous Discovery Habits) : une opportunité sans lien avec un outcome business n'a pas sa place dans l'Opportunity Solution Tree.",
       nextSteps: [
@@ -55,7 +55,7 @@ function classifyIdea(answers = {}) {
       rationale:
         "Le lien avec un objectif business n'est qu'une intuition, et aucun signal utilisateur ne vient la renforcer. C'est la combinaison la plus risquée : ni la valeur business ni le besoin utilisateur ne sont établis. Clarifie l'un des deux avant d'investir du temps de discovery.",
       reference:
-        "Inspiré de Melissa Perri (Escaping the Build Trap) : sans lien business explicite ni signal utilisateur, une idée reste une hypothèse non ancrée — pas un sujet à traiter.",
+        "Inspiré de Melissa Perri (Escaping the Build Trap) : sans lien business explicite ni signal utilisateur, une idée reste une hypothèse non ancrée, pas un sujet à traiter.",
       nextSteps: [
         "Reformule le lien business : à quel objectif d'équipe ça sert précisément ?",
         "À défaut, cherche un premier signal utilisateur (interview rapide, ticket support, donnée d'usage)",
@@ -72,14 +72,14 @@ function classifyIdea(answers = {}) {
       tag: '🔷 Discovery Problème + Solution',
       tagClass: 'tag-double',
       rationale:
-        "Le problème n'est pas encore validé et la solution reste floue. Il faut d'abord explorer l'espace du problème avant de chercher des solutions — c'est le double diamant complet.",
+        "Le problème n'est pas encore validé et la solution reste floue. Il faut d'abord explorer l'espace du problème avant de chercher des solutions : c'est le double diamant complet.",
       reference:
         "Inspiré de Melissa Perri : les équipes qui sautent à la solution sans valider le problème tombent dans le build trap. Inspiré de Teresa Torres : commence par cartographier les opportunités avant d'explorer les solutions.",
       nextSteps: [
-        'Phase 1 — Discovery problème : mène 5 interviews exploratoires sur le problème',
+        'Phase 1 (Discovery problème) : mène 5 interviews exploratoires sur le problème',
         'Cartographie les opportunités avec un Opportunity Solution Tree',
         'Valide que le problème mérite d\'être résolu (fréquence, impact, alternatives actuelles)',
-        'Phase 2 — Discovery solution : génère et teste plusieurs pistes de solutions',
+        'Phase 2 (Discovery solution) : génère et teste plusieurs pistes de solutions',
         'Prototype et valide avant de passer en développement',
       ],
       diamond: ['Discovery Problème', '→', 'Discovery Solution', '→', 'Initiative'],
@@ -132,7 +132,7 @@ function classifyIdea(answers = {}) {
       tag: '🔵 Valider avant de lancer',
       tagClass: 'tag-solution',
       rationale:
-        "Le problème te paraît clair et tu envisages déjà une solution de grande ampleur — mais aucun signal utilisateur ne confirme ce problème pour l'instant. Un chantier de cette taille ne doit jamais démarrer sur une simple intuition interne : valide vite avant de committer l'équipe.",
+        "Le problème te paraît clair et tu envisages déjà une solution de grande ampleur, mais aucun signal utilisateur ne confirme ce problème pour l'instant. Un chantier de cette taille ne doit jamais démarrer sur une simple intuition interne : valide vite avant de committer l'équipe.",
       reference:
         "Inspiré de Teresa Torres : ne construis jamais une initiative sans preuve que l'opportunité est réelle, même si elle te paraît évidente.",
       nextSteps: [
@@ -152,7 +152,7 @@ function classifyIdea(answers = {}) {
         tag: '🟡 Direct en Backlog',
         tagClass: 'tag-backlog',
         rationale:
-          "La solution est claire, l'effort est minimal, et un signal utilisateur confirme que ça vaut le coup. Pas besoin de passer par une phase de discovery complète — c'est un quick win à planifier directement dans le backlog.",
+          "La solution est claire, l'effort est minimal, et un signal utilisateur confirme que ça vaut le coup. Pas besoin de passer par une phase de discovery complète : c'est un quick win à planifier directement dans le backlog.",
         reference:
           "Inspiré de Melissa Perri : les quick wins avec une solution évidente, un faible risque et un signal de validation n'ont pas besoin de discovery. L'over-process tue la vélocité.",
         nextSteps: [
@@ -170,7 +170,7 @@ function classifyIdea(answers = {}) {
       tag: '🟡 Backlog après vérification',
       tagClass: 'tag-backlog',
       rationale:
-        "L'effort est minimal et la solution te semble évidente — mais aucun signal ne confirme encore que ce problème est vécu par tes utilisateurs. Même pour un quick win, engager du temps de développement sans le moindre signal reste un pari. Une vérification légère (pas une discovery complète) suffit avant de committer.",
+        "L'effort est minimal et la solution te semble évidente, mais aucun signal ne confirme encore que ce problème est vécu par tes utilisateurs. Même pour un quick win, engager du temps de développement sans le moindre signal reste un pari. Une vérification légère (pas une discovery complète) suffit avant de committer.",
       reference:
         "Inspiré de Melissa Perri : un quick win reste un pari tant qu'aucun signal, même faible, ne confirme le problème qu'il résout.",
       nextSteps: [
@@ -191,7 +191,7 @@ function classifyIdea(answers = {}) {
       tag: '🔵 Discovery Solution uniquement',
       tagClass: 'tag-solution',
       rationale:
-        "Le problème est bien documenté et validé par les utilisateurs. Il ne reste qu'à trouver la bonne solution — entre directement en discovery solution sans repasser par la case problème.",
+        "Le problème est bien documenté et validé par les utilisateurs. Il ne reste qu'à trouver la bonne solution : entre directement en discovery solution sans repasser par la case problème.",
       reference:
         "Inspiré de Teresa Torres : ne retourne pas en discovery problème si l'opportunité est déjà bien définie. Concentre-toi sur l'exploration des solutions.",
       nextSteps: [
@@ -210,7 +210,7 @@ function classifyIdea(answers = {}) {
     tag: '🔵 Discovery Solution (renforcer les signaux)',
     tagClass: 'tag-solution',
     rationale:
-      "Le problème te semble déjà clair, mais les signaux utilisateurs qui le confirment sont faibles ou absents — contrairement à un problème réellement validé. Explore les solutions, mais fais-le en parallèle d'une collecte de signaux plus solides : ne fige rien tant que le problème n'est pas confirmé de l'extérieur.",
+      "Le problème te semble déjà clair, mais les signaux utilisateurs qui le confirment sont faibles ou absents, contrairement à un problème réellement validé. Explore les solutions, mais fais-le en parallèle d'une collecte de signaux plus solides : ne fige rien tant que le problème n'est pas confirmé de l'extérieur.",
     reference:
       "Inspiré de Teresa Torres : une opportunité qui paraît claire en interne doit toujours être recoupée avec des signaux utilisateurs externes avant qu'on investisse dans ses solutions.",
     nextSteps: [

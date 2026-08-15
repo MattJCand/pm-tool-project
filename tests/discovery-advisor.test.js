@@ -46,7 +46,7 @@ test('clarity none -> How Might We + Problem Statement, même avec un budget él
 
 test('comprendre le problème + clarté partielle + peu de temps -> Job Story (artefact léger)', () => {
   const result = recommendDiscoveryArtifact({ goal: 'understand_problem', clarity: 'partial', audience: 'team', horizon: 'product', depth: 'quick' });
-  assert.equal(result.recommendation, 'Jobs To Be Done — Job Story');
+  assert.equal(result.recommendation, 'Jobs To Be Done : Job Story');
 });
 
 test('comprendre le problème + clarté partielle + budget confortable -> OST (artefact plus complet)', () => {

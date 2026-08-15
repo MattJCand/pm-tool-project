@@ -25,15 +25,15 @@ Chaque recommandation s'appuie sur des frameworks reconnus de product discovery 
 
 Aucune installation, aucune inscription : ouvre le [site](https://mattjcand.github.io/pm-tool-project/), ou télécharge le dépôt et ouvre `index.html` dans ton navigateur.
 
-Tes réponses restent dans ton navigateur (stockage local) — rien n'est envoyé ni conservé sur un serveur.
+Tes réponses restent dans ton navigateur (stockage local) : rien n'est envoyé ni conservé sur un serveur.
 
 ## Open source
 
-Ce projet est open source sous licence [MIT](LICENSE) — libre à toi de l'utiliser, le modifier ou le redistribuer.
+Ce projet est open source sous licence [MIT](LICENSE), libre à toi de l'utiliser, le modifier ou le redistribuer.
 
 **Stack** : HTML / CSS / JS vanilla, zéro dépendance, zéro backend, zéro étape de build. Chaque outil est une page HTML autonome ; la logique de décision est testée (`node:test`) et intégrée en continu (voir le badge CI ci-dessus).
 
-**Contribuer** : les issues et pull requests sont bienvenues. Avant de proposer un changement sur la logique de décision d'un outil, jette un œil aux tests dans `tests/` pour comprendre le comportement attendu — toute modification d'un arbre de décision doit s'accompagner d'un test à jour.
+**Contribuer** : les issues et pull requests sont bienvenues. Avant de proposer un changement sur la logique de décision d'un outil, jette un œil aux tests dans `tests/` pour comprendre le comportement attendu. Toute modification d'un arbre de décision doit s'accompagner d'un test à jour.
 
 ```bash
 npm test
