@@ -1,0 +1,162 @@
+/* ==========================================================================
+   ProtoAdvisor — fast floating quiz.
+   Vertically centered single card on a warm full-bleed gradient, minimal
+   chrome, big mono step numerals. Only 3 steps / ~90s, so the layout
+   should feel quick and light rather than a page you settle into.
+   ========================================================================== */
+:root {
+  --tool-color: var(--tool-proto);
+  --tool-soft: var(--tool-proto-soft);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--tool-proto) 22%, transparent), transparent 55%),
+    radial-gradient(circle at 85% 85%, color-mix(in srgb, var(--tool-proto) 16%, transparent), transparent 50%),
+    var(--tool-proto-ink);
+}
+
+.tool-stage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-stage-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem clamp(1.25rem, 5vw, 2.5rem);
+}
+
+.tool-stage-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: #f3d9bb;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: color 0.2s var(--ease);
+}
+
+.tool-stage-back:hover {
+  color: #ffffff;
+}
+
+.tool-stage-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f0c493;
+}
+
+.tool-stage-mark .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tool-proto);
+}
+
+.tool-stage-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem clamp(1.25rem, 5vw, 2.5rem) 3rem;
+}
+
+.tool-stage-inner {
+  width: 100%;
+  max-width: 520px;
+}
+
+.tool-stage-head {
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+.tool-stage-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-md);
+  background: rgba(240, 168, 98, 0.16);
+  color: #f0a862;
+  margin-bottom: 0.7rem;
+}
+
+.tool-stage-icon svg {
+  width: 25px;
+  height: 25px;
+}
+
+.tool-stage-head h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4.5vw, 2.4rem);
+  color: #fff3e6;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.tool-stage-head h1 em {
+  font-style: italic;
+  color: #f0a862;
+}
+
+.tool-stage-head p {
+  color: #e2c3a0;
+  font-size: 0.92rem;
+}
+
+#tool-mount {
+  width: 100%;
+}
+
+.tool-stage .progress-meta,
+.tool-stage .progress-meta .current {
+  color: #f0c493;
+}
+
+.tool-stage .progress-track {
+  background: rgba(240, 168, 98, 0.2);
+}
+
+.tool-stage .card,
+.tool-stage .result-card,
+.tool-stage .hypothesis-recap {
+  background: #241606;
+  border-color: rgba(240, 168, 98, 0.25);
+  color: #fff3e6;
+}
+
+.tool-stage .question-hint,
+.tool-stage .result-rationale,
+.tool-stage .step-item,
+.tool-stage .also-item {
+  color: #e2c3a0;
+  opacity: 1;
+}
+
+.tool-stage .option-btn {
+  background: rgba(240, 168, 98, 0.08);
+  border-color: rgba(240, 168, 98, 0.22);
+  color: #fff3e6;
+}
+
+.tool-stage .option-hint {
+  color: #cba57e;
+}
+
+.tool-stage .result-also,
+.tool-stage .hypothesis-recap {
+  background: rgba(240, 168, 98, 0.08);
+}

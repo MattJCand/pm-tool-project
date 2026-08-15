@@ -1,0 +1,185 @@
+/* ==========================================================================
+   IdeaClassifier — split-screen rail.
+   A fixed, dark ink/indigo rail on the left carries identity + progress
+   context permanently; the right pane is the only thing that scrolls.
+   This is deliberately the most "editorial / decision console" of the
+   three shells — it matches a tool that filters ideas before anything
+   else happens.
+   ========================================================================== */
+:root {
+  --tool-color: var(--tool-idea);
+  --tool-soft: var(--tool-idea-soft);
+}
+
+body {
+  background: var(--bg);
+}
+
+.tool-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- Rail ------------------------------------------------------------ */
+.tool-rail {
+  flex: 0 0 clamp(260px, 30vw, 380px);
+  background: linear-gradient(165deg, var(--tool-idea-ink) 0%, #241d5e 100%);
+  color: #ece9ff;
+  padding: clamp(1.75rem, 3vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.tool-rail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: #ada6f2;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-bottom: clamp(2rem, 6vh, 3.5rem);
+  width: fit-content;
+  transition: color 0.2s var(--ease);
+}
+
+.tool-rail-back:hover {
+  color: #ffffff;
+}
+
+.tool-rail-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: rgba(168, 155, 255, 0.16);
+  color: #c3b9ff;
+  margin-bottom: 1.2rem;
+}
+
+.tool-rail-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.tool-rail h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 2.6vw, 2.1rem);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+}
+
+.tool-rail h1 em {
+  font-style: italic;
+  color: #a89bff;
+}
+
+.tool-rail p {
+  color: #b8b3e0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-bottom: clamp(2rem, 6vh, 3rem);
+}
+
+.tool-rail-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.tool-rail-steps li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: #8f89c2;
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.tool-rail-steps li .num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.tool-rail-steps li.active {
+  color: #ffffff;
+  background: rgba(168, 155, 255, 0.14);
+  font-weight: 600;
+}
+
+.tool-rail-steps li.active .num {
+  color: #a89bff;
+}
+
+.tool-rail-steps li.done {
+  color: #b8b3e0;
+}
+
+.tool-rail-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(168, 155, 255, 0.18);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #8f89c2;
+  line-height: 1.6;
+}
+
+/* --- Content pane ------------------------------------------------------ */
+.tool-pane {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  padding: clamp(2.5rem, 7vh, 4.5rem) clamp(1.25rem, 4vw, 2.5rem) 5rem;
+}
+
+.tool-pane-inner {
+  width: 100%;
+  max-width: 640px;
+}
+
+#tool-mount {
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .tool-shell {
+    flex-direction: column;
+  }
+  .tool-rail {
+    position: relative;
+    height: auto;
+    flex: none;
+    padding: 1.5rem 1.25rem;
+  }
+  .tool-rail p,
+  .tool-rail-footer {
+    display: none;
+  }
+  .tool-rail-steps {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tool-rail-steps li {
+    padding: 0.35rem 0.6rem;
+  }
+  .tool-pane {
+    padding-top: 2rem;
+  }
+}

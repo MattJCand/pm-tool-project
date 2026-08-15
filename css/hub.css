@@ -1,0 +1,291 @@
+/* ==========================================================================
+   Hub — home page shell.
+   Full-bleed sections, alternating showcase rows (not three identical
+   cards), each row borrowing its tool's own color so the hub itself
+   previews the fact that every tool has its own identity.
+   ========================================================================== */
+
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--tool-idea) 7%, transparent), transparent 40%),
+    radial-gradient(circle at 90% 30%, color-mix(in srgb, var(--tool-discovery) 6%, transparent), transparent 40%),
+    radial-gradient(circle at 15% 85%, color-mix(in srgb, var(--tool-proto) 6%, transparent), transparent 40%);
+  background-attachment: fixed;
+}
+
+.hub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem clamp(1.25rem, 5vw, 3rem);
+}
+
+.hub-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.hub-logo .mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.hub-logo em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hub-header-note {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+/* -------------------------------------------------------------------- */
+/* Hero                                                                  */
+/* -------------------------------------------------------------------- */
+.hub-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5rem) clamp(1.25rem, 5vw, 2rem) clamp(3rem, 8vw, 5rem);
+  text-align: center;
+}
+
+.hub-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 1.5rem;
+}
+
+.hub-eyebrow .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.hub-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 1.2rem;
+}
+
+.hub-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hub-intro {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 50ch;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* -------------------------------------------------------------------- */
+/* Showcase rows — one per tool, alternating sides, own color & rhythm  */
+/* -------------------------------------------------------------------- */
+.hub-showcase {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 2rem) clamp(2rem, 6vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2rem);
+}
+
+.tool-row {
+  --row-color: var(--accent);
+  --row-soft: var(--accent-soft);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+
+.tool-row:hover,
+.tool-row:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--row-color);
+  box-shadow: var(--shadow-lg);
+}
+
+.tool-row-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--row-color) 35%, transparent), transparent 60%),
+    var(--row-soft);
+  padding: 2rem;
+}
+
+.tool-row-visual svg {
+  width: 30%;
+  max-width: 96px;
+  height: auto;
+  color: var(--row-color);
+  opacity: 0.9;
+}
+
+.tool-row-number {
+  position: absolute;
+  top: 1rem;
+  left: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--row-color);
+}
+
+.tool-row-body {
+  padding: clamp(1.6rem, 4vw, 2.4rem) clamp(1.5rem, 4vw, 2.2rem) clamp(1.8rem, 4vw, 2.4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.tool-row-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tool-row-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--row-color);
+  font-weight: 700;
+}
+
+.tool-row-time {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  text-align: right;
+}
+
+.tool-row h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.tool-row p {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+.tool-row-footer {
+  margin-top: auto;
+  padding-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--row-color);
+}
+
+.tool-row-footer .arrow {
+  transition: transform 0.25s var(--ease);
+}
+
+.tool-row:hover .tool-row-footer .arrow {
+  transform: translateX(5px);
+}
+
+@media (min-width: 760px) {
+  .tool-row {
+    grid-template-columns: 34% 1fr;
+  }
+  .tool-row:nth-child(even) {
+    grid-template-columns: 1fr 34%;
+  }
+  .tool-row:nth-child(even) .tool-row-visual {
+    order: 2;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Pipeline strip                                                       */
+/* -------------------------------------------------------------------- */
+.hub-pipeline {
+  max-width: 1080px;
+  margin: clamp(1rem, 4vw, 2rem) auto clamp(3rem, 6vw, 4rem);
+  padding: 0 clamp(1.25rem, 5vw, 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.hub-pipeline b {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.hub-footer {
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+  color: var(--text-faint);
+  font-size: 0.78rem;
+}

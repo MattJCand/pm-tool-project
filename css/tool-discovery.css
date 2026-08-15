@@ -1,0 +1,130 @@
+/* ==========================================================================
+   DiscoveryAdvisor — wide field map.
+   Full-bleed teal banner up top, then a wide airy canvas (not a narrow
+   centered card) with a dotted "map" motif in the background and a
+   two-across option grid by default. This tool is about surveying a
+   space, so the layout should feel wide and exploratory, not a form.
+   ========================================================================== */
+:root {
+  --tool-color: var(--tool-discovery);
+  --tool-soft: var(--tool-discovery-soft);
+}
+
+body {
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--tool-discovery) 16%, transparent) 1px, transparent 1.4px)
+      0 0 / 26px 26px,
+    var(--bg);
+}
+
+.tool-banner {
+  background: linear-gradient(120deg, var(--tool-discovery-ink) 0%, #0c4a3f 55%, #0f8f7a 130%);
+  color: #eafaf5;
+  padding: clamp(1.4rem, 3vw, 2rem) clamp(1.25rem, 5vw, 3rem) clamp(3rem, 7vw, 4.5rem);
+}
+
+.tool-banner-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(2rem, 6vw, 3.5rem);
+}
+
+.tool-banner-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: #a9e8db;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: color 0.2s var(--ease);
+}
+
+.tool-banner-back:hover {
+  color: #ffffff;
+}
+
+.tool-banner-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a9e8db;
+  border: 1px solid rgba(169, 232, 219, 0.35);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-pill);
+}
+
+.tool-banner-content {
+  max-width: 720px;
+}
+
+.tool-banner-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
+  background: rgba(79, 214, 189, 0.16);
+  color: #7fe6cd;
+  margin-bottom: 1.1rem;
+}
+
+.tool-banner-icon svg {
+  width: 27px;
+  height: 27px;
+}
+
+.tool-banner h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin-bottom: 0.7rem;
+}
+
+.tool-banner h1 em {
+  font-style: italic;
+  color: #7fe6cd;
+}
+
+.tool-banner p {
+  color: #bfe9de;
+  font-size: 1rem;
+  max-width: 52ch;
+  line-height: 1.6;
+}
+
+/* --- Canvas ------------------------------------------------------------ */
+.tool-canvas {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 5vw, 2.5rem) 5rem;
+  margin-top: clamp(-3rem, -5vw, -2rem);
+}
+
+#tool-mount {
+  width: 100%;
+}
+
+.tool-canvas .card {
+  padding: clamp(1.75rem, 4vw, 3rem);
+}
+
+.tool-canvas .options.grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 640px) {
+  .tool-canvas .options.grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tool-canvas .result-card {
+  max-width: 760px;
+  margin: 0 auto;
+}

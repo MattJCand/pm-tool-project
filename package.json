@@ -1,0 +1,7 @@
+{
+  "name": "pm-tool-project",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}
