@@ -43,11 +43,11 @@
     {
       key: 'horizon',
       label: 'Sur quel horizon travailles-tu ?',
-      hint: 'L\'horizon détermine le niveau d\'abstraction de l\'artefact — du ticket au vision produit.',
+      hint: 'L\'horizon détermine le niveau d\'abstraction de l\'artefact : du ticket au vision produit.',
       options: [
-        { value: 'feature', icon: '⚡', label: 'Court terme — une feature ou un sprint', hint: 'Quelques semaines' },
-        { value: 'product', icon: '📦', label: 'Moyen terme — un produit ou une version', hint: 'Quelques mois' },
-        { value: 'vision', icon: '🔭', label: 'Long terme — vision ou stratégie', hint: '6 mois à plusieurs années' },
+        { value: 'feature', icon: '⚡', label: 'Court terme · une feature ou un sprint', hint: 'Quelques semaines' },
+        { value: 'product', icon: '📦', label: 'Moyen terme · un produit ou une version', hint: 'Quelques mois' },
+        { value: 'vision', icon: '🔭', label: 'Long terme · vision ou stratégie', hint: '6 mois à plusieurs années' },
       ],
     },
     {
@@ -55,8 +55,8 @@
       label: 'Combien de temps peux-tu consacrer à cette discovery ?',
       hint: 'Le budget disponible change la nature de l\'artefact : un format léger si tu dois avancer vite, un format complet si tu as la bande passante pour cartographier en profondeur.',
       options: [
-        { value: 'quick', icon: '⏱️', label: 'Peu de temps', hint: 'Quelques heures à une journée — je dois avancer vite' },
-        { value: 'deep', icon: '🗂️', label: 'Du temps devant moi', hint: 'Plusieurs jours — je peux cartographier en profondeur' },
+        { value: 'quick', icon: '⏱️', label: 'Peu de temps', hint: 'Quelques heures à une journée, je dois avancer vite' },
+        { value: 'deep', icon: '🗂️', label: 'Du temps devant moi', hint: 'Plusieurs jours, je peux cartographier en profondeur' },
       ],
     },
   ];

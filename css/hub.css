@@ -53,6 +53,24 @@ body {
   color: var(--accent);
 }
 
+.hub-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.hub-header-nav a {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.hub-header-nav a:hover {
+  color: var(--text);
+}
+
 .hub-header-note {
   font-family: var(--font-mono);
   font-size: 0.72rem;

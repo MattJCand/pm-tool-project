@@ -23,7 +23,7 @@
       grid: true,
       // Les options sont adaptées au risque choisi à l'étape précédente : la question
       // "de quoi as-tu besoin ?" n'a pas le même sens pour la désirabilité que pour la
-      // faisabilité ou la viabilité — un même libellé générique pour les 4 risques
+      // faisabilité ou la viabilité : un même libellé générique pour les 4 risques
       // produisait des recommandations dont l'intitulé ne correspondait pas à la question.
       optionsByRisk: {
         desirability: [

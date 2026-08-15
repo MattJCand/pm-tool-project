@@ -66,48 +66,9 @@
   --tool-soft: var(--accent-soft);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #131311;
-    --bg-soft: #191915;
-    --surface: #1c1c18;
-    --surface-raised: #201f1b;
-    --border: #302f29;
-    --border-strong: #423f36;
-    --text: #efeee7;
-    --text-muted: #a6a396;
-    --text-faint: #6f6c60;
-
-    --accent: #a89bff;
-    --accent-ink: #131311;
-    --accent-soft: #26234a;
-    --accent-strong: #c3b9ff;
-
-    --tool-idea: #a89bff;
-    --tool-idea-soft: #26234a;
-    --tool-discovery: #4fd6bd;
-    --tool-discovery-soft: #10332c;
-    --tool-proto: #f0a862;
-    --tool-proto-soft: #3a2a15;
-
-    --warn: #f0b45c;
-    --warn-soft: #3a2c12;
-    --danger: #ef7b6f;
-    --danger-soft: #3a1e1a;
-    --blue: #7ec1ee;
-    --blue-soft: #17293a;
-    --purple: #cba6f2;
-    --purple-soft: #2a1f3a;
-    --yellow: #e4c85b;
-    --yellow-soft: #362e12;
-    --green: #7fd19c;
-    --green-soft: #163526;
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
-  }
-}
+/* Thème forcé en clair : pas de bascule automatique via prefers-color-scheme,
+   le mode sombre système donnait un rendu trop dur (fond quasi noir + accent
+   violet clair) sur les panneaux déjà saturés de chaque outil. */
 
 /* ==========================================================================
    Reset & base
